@@ -1,0 +1,37 @@
+---
+description: Imager project coding standards
+alwaysApply: true
+---
+
+# Code Structure
+
+- One file per concern: transcription, scene_extraction, video_matching, video_composition, config
+- Functions under 20 lines, max 2 nesting levels
+- No comments, no docstrings - names must be self-explanatory
+- Type hints on all functions
+- No classes until you need state
+- Early returns over nested conditionals
+
+# Configuration
+
+- All constants in config.py
+- Zero magic strings or hardcoded values in functions
+- Environment variables for secrets via .env file
+
+# Error Handling
+
+- Fail immediately with context: include relevant values in error messages
+- No bare except clauses
+- Validate inputs at function entry
+
+# Dependencies
+
+- Only add libraries you can explain in one sentence
+- Prefer standard library when possible
+- Use proven tools: Whisper, MoviePy, FastAPI, sentence-transformers
+
+# Module Independence
+
+- Each module runnable standalone
+- Pure functions over stateful classes
+- No abstraction until duplication exists
