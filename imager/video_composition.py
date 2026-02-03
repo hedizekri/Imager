@@ -1,9 +1,19 @@
+import json
+import time
+from datetime import datetime
 from pathlib import Path
 
 from moviepy.editor import AudioFileClip, VideoFileClip, concatenate_videoclips
 
 from imager.config import COMPOSITION, PATHS
 from imager.types import MatchedScene
+
+# #region agent log
+DEBUG_LOG_PATH = "/Users/hedizekri/Perso/Imager/.cursor/debug.log"
+def _debug_log(loc, msg, data, hyp):
+    with open(DEBUG_LOG_PATH, "a") as f:
+        f.write(json.dumps({"location": loc, "message": msg, "data": data, "hypothesisId": hyp, "timestamp": int(time.time()*1000), "sessionId": "debug-session"}) + "\n")
+# #endregion
 
 
 class CompositionError(Exception):
@@ -26,9 +36,18 @@ def compose_video(
 
     audio = AudioFileClip(str(audio_path))
     clips = [_load_and_trim_clip(match) for match in matches]
+    # #region agent log
+    _debug_log("video_composition.py:compose_video", "clips_created", {"count": len(clips), "clip_durations": [c.duration for c in clips]}, "H4")
+    # #endregion
     video = concatenate_videoclips(clips, method="compose")
+    # #region agent log
+    _debug_log("video_composition.py:compose_video", "after_concatenate", {"concatenated_duration": video.duration, "audio_duration": audio.duration}, "H4")
+    # #endregion
 
     video = _match_duration_to_audio(video, audio.duration)
+    # #region agent log
+    _debug_log("video_composition.py:compose_video", "after_duration_match", {"final_video_duration": video.duration}, "H5")
+    # #endregion
     final = video.set_audio(audio)
 
     final.write_videofile(
@@ -48,6 +67,9 @@ def _load_and_trim_clip(match: MatchedScene) -> VideoFileClip:
 
     clip = VideoFileClip(str(match.video_path))
     target_duration = match.scene.end_time - match.scene.start_time
+    # #region agent log
+    _debug_log("video_composition.py:_load_and_trim_clip", "clip_processing", {"video": match.video_path.name, "original_duration": clip.duration, "target_duration": target_duration, "scene_start": match.scene.start_time, "scene_end": match.scene.end_time}, "H3")
+    # #endregion
 
     if target_duration <= 0:
         return clip
@@ -69,7 +91,8 @@ def _match_duration_to_audio(video: VideoFileClip, audio_duration: float):
 
 
 def _default_output_path() -> Path:
-    return PATHS["output_dir"] / f"output.{COMPOSITION['output_format']}"
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    return PATHS["output_dir"] / f"output_{timestamp}.{COMPOSITION['output_format']}"
 
 
 def _cleanup(

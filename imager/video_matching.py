@@ -1,8 +1,16 @@
 import json
+import time
 from pathlib import Path
 
 from imager.config import PATHS
 from imager.types import MatchedScene, Scene, VideoMetadata
+
+# #region agent log
+DEBUG_LOG_PATH = "/Users/hedizekri/Perso/Imager/.cursor/debug.log"
+def _debug_log(loc, msg, data, hyp):
+    with open(DEBUG_LOG_PATH, "a") as f:
+        f.write(json.dumps({"location": loc, "message": msg, "data": data, "hypothesisId": hyp, "timestamp": int(time.time()*1000), "sessionId": "debug-session"}) + "\n")
+# #endregion
 
 
 class VideoMatchingError(Exception):
@@ -31,7 +39,11 @@ def match_scenes_to_videos(
     scenes: list[Scene],
     index: dict[str, VideoMetadata]
 ) -> list[MatchedScene]:
-    return [_match_single_scene(scene, index) for scene in scenes]
+    matches = [_match_single_scene(scene, index) for scene in scenes]
+    # #region agent log
+    _debug_log("video_matching.py:match_scenes_to_videos", "all_matches", {"count": len(matches), "matches": [{"video": str(m.video_path.name), "is_placeholder": m.is_placeholder, "scene_start": m.scene.start_time, "scene_end": m.scene.end_time} for m in matches]}, "H2")
+    # #endregion
+    return matches
 
 
 def _match_single_scene(
@@ -42,14 +54,21 @@ def _match_single_scene(
     best_score = 0
 
     scene_keywords = set(kw.lower() for kw in scene.keywords)
+    scores = {}
 
     for filename, metadata in index.items():
         video_tags = set(tag.lower() for tag in metadata.tags)
-        score = len(scene_keywords & video_tags)
+        matching_tags = scene_keywords & video_tags
+        score = len(matching_tags)
+        scores[filename] = {"score": score, "matching": list(matching_tags)}
 
         if score > best_score:
             best_score = score
             best_match = filename
+
+    # #region agent log
+    _debug_log("video_matching.py:_match_single_scene", "matching_details", {"scene_keywords": list(scene_keywords), "scores": scores, "best_match": best_match, "best_score": best_score}, "H2")
+    # #endregion
 
     if best_match:
         return MatchedScene(
