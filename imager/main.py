@@ -30,7 +30,7 @@ def run_pipeline(
     print(f"  Matched {len(matches) - placeholder_count}/{len(matches)} scenes")
 
     print("Step 4/4: Composing video...")
-    result = compose_video(matches, output_path)
+    result = compose_video(matches, audio_path, output_path)
     print(f"  Output saved to: {result}")
 
     return result
