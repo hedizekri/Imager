@@ -8,20 +8,26 @@ from imager.types import Scene, Transcript
 
 MAX_RETRIES = 2
 
-SCENE_PROMPT = """Create one JSON scene per segment. Use segment INDEX numbers [0], [1], [2], etc.
+SCENE_PROMPT = """Goal: from each transcript segment, derive search terms that will find B-roll footage matching what is being said in that segment.
+
+Create one JSON scene per segment. Use segment INDEX numbers [0], [1], [2], etc.
 
 {segments}
 
 For each segment, output:
 - description: what a camera would show
-- keywords: 5 SINGLE ENGLISH words for video search (dog, coffee, library, doctor, cinema)
+- keywords: exactly 5 SINGLE ENGLISH words for stock video search. Derive keywords from the content of that segment (topic, actions, objects mentioned). Segment text may be in any language; translate its meaning into English search terms. Do not use generic or unrelated terms.
 - segment_start: the [X] number
 - segment_end: same as segment_start for single segments
 
+If two consecutive or thematically similar segments would get the same or very similar keywords, vary the second: use different visuals, synonyms, or a different aspect of the topic so search results are not duplicated.
+
 CRITICAL: segment_start and segment_end must be INDEX numbers like 0, 1, 2, 3, 4 - NOT timestamps!
 
+The example below is only for the JSON structure and the reasoning: read the segment content, then output 5 English search terms that match what is said. Apply that same structure and reasoning to the segments above, whatever their subject (sport, food, travel, work, nature, etc.).
+
 Output ONLY this JSON format, nothing else:
-[{{"description": "person drinking coffee", "keywords": ["coffee", "cafe", "drink", "cup", "morning"], "segment_start": 0, "segment_end": 0}}, {{"description": "person walking dog", "keywords": ["dog", "walk", "pet", "outdoor", "leash"], "segment_start": 1, "segment_end": 1}}]
+[{{"description": "person exercising in gym", "keywords": ["workout", "exercise", "gym", "fitness", "training"], "segment_start": 0, "segment_end": 0}}, {{"description": "team meeting in office", "keywords": ["meeting", "office", "team", "business", "discussion"], "segment_start": 1, "segment_end": 1}}]
 
 JSON:"""
 

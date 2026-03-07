@@ -1,101 +1,57 @@
 [
   {
     "start": 0.0,
-    "end": 6.12,
+    "end": 29.0,
     "keywords": [
       "coffee",
-      "cafe",
+      "arabica",
+      "coffee shop",
       "drink",
-      "cup",
       "morning"
     ]
   },
   {
-    "start": 6.12,
-    "end": 7.12,
+    "start": 8.0,
+    "end": 29.0,
     "keywords": [
       "dog",
+      "golden retriever",
       "walk",
       "pet",
-      "outdoor",
-      "leash"
+      "playful"
     ]
   },
   {
-    "start": 7.12,
-    "end": 13.280000000000001,
-    "keywords": [
-      "exercise",
-      "workout",
-      "sport",
-      "gym",
-      "routine"
-    ]
-  },
-  {
-    "start": 13.280000000000001,
-    "end": 16.64,
-    "keywords": [
-      "salad",
-      "vegetables",
-      "healthy",
-      "protein",
-      "meal"
-    ]
-  },
-  {
-    "start": 16.64,
-    "end": 22.48,
-    "keywords": [
-      "water",
-      "hydration",
-      "drink",
-      "glass",
-      "daily"
-    ]
-  },
-  {
-    "start": 22.48,
-    "end": 23.48,
+    "start": 13.0,
+    "end": 29.0,
     "keywords": [
       "library",
-      "reading",
-      "book",
       "study",
-      "knowledge"
+      "exam",
+      "books",
+      "friends"
     ]
   },
   {
-    "start": 23.48,
-    "end": 29.52,
+    "start": 17.0,
+    "end": 29.0,
     "keywords": [
-      "dessert",
-      "sweet",
-      "enjoy",
-      "treat",
-      "snack"
+      "doctor",
+      "routine",
+      "measurement",
+      "health",
+      "assurance"
     ]
   },
   {
-    "start": 29.52,
-    "end": 33.84,
+    "start": 23.0,
+    "end": 29.0,
     "keywords": [
-      "water",
-      "hydration",
-      "drink",
-      "glass",
-      "daily"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "water",
-      "hydration",
-      "drink",
-      "glass",
-      "daily"
+      "cinema",
+      "Inception",
+      "movie",
+      "date",
+      "film"
     ]
   }
 ]
