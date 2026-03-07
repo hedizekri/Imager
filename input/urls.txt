@@ -1,0 +1,5 @@
+https://artgrid.io/?search=coffee&search=barista&search=morning&sortId=1
+https://artgrid.io/?search=dog&search=retriever&search=playful&sortId=1
+https://artgrid.io/?search=study&search=library&search=books&sortId=1
+https://artgrid.io/?search=doctor&search=routine&search=calm&sortId=1
+https://artgrid.io/?search=cinema&search=Inception&search=romantic&sortId=1

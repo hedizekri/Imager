@@ -1,74 +1,47 @@
 [
   {
     "start": 0.0,
-    "end": 29.52,
+    "end": 29.0,
     "keywords": [
-      "gym",
-      "equipment",
-      "energy"
+      "coffee",
+      "barista",
+      "morning"
     ]
   },
   {
-    "start": 29.52,
-    "end": 38.64,
+    "start": 8.0,
+    "end": 29.0,
     "keywords": [
-      "kitchen",
-      "ingredients",
-      "vibrant"
+      "dog",
+      "retriever",
+      "playful"
     ]
   },
   {
-    "start": 33.84,
-    "end": 38.64,
+    "start": 13.0,
+    "end": 29.0,
     "keywords": [
-      "hydration",
-      "nature",
-      "enjoyment"
+      "study",
+      "library",
+      "books"
     ]
   },
   {
-    "start": 33.84,
-    "end": 38.64,
+    "start": 17.0,
+    "end": 29.0,
     "keywords": [
-      "diet",
-      "balance",
-      "simplicity"
+      "doctor",
+      "routine",
+      "calm"
     ]
   },
   {
-    "start": 33.84,
-    "end": 38.64,
+    "start": 23.0,
+    "end": 29.0,
     "keywords": [
-      "market",
-      "selection",
-      "freshness"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "hydration",
-      "nature",
-      "enjoyment"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "outdoor",
-      "activity",
-      "freedom"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "hydration",
-      "nature",
-      "enjoyment"
+      "cinema",
+      "Inception",
+      "romantic"
     ]
   }
 ]
