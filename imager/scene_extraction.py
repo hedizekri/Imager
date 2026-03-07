@@ -1,17 +1,9 @@
 import json
-import time
 
 import ollama
 
 from imager.config import SCENE_EXTRACTION
 from imager.types import Scene, Transcript
-
-# #region agent log
-DEBUG_LOG_PATH = "/Users/hedizekri/Perso/Imager/.cursor/debug.log"
-def _debug_log(loc, msg, data, hyp):
-    with open(DEBUG_LOG_PATH, "a") as f:
-        f.write(json.dumps({"location": loc, "message": msg, "data": data, "hypothesisId": hyp, "timestamp": int(time.time()*1000), "sessionId": "debug-session"}) + "\n")
-# #endregion
 
 
 class SceneExtractionError(Exception):
@@ -61,35 +53,17 @@ def _format_segments_with_timestamps(segments: list) -> str:
     lines = []
     for i, seg in enumerate(segments):
         lines.append(f"[{i}] ({seg.start_time:.1f}s - {seg.end_time:.1f}s): {seg.text}")
-    result = "\n".join(lines)
-    # #region agent log
-    _debug_log("scene_extraction.py:_format_segments", "transcript_segments", {"count": len(segments), "segments": [{"idx": i, "start": s.start_time, "end": s.end_time, "text": s.text[:40]} for i, s in enumerate(segments)]}, "H6")
-    # #endregion
-    return result
+    return "\n".join(lines)
 
 
 def _call_ollama(prompt: str) -> str:
-    print("\n" + "="*60)
-    print("OLLAMA PROMPT:")
-    print("="*60)
-    print(prompt)
-    print("="*60 + "\n")
-
     try:
         response = ollama.chat(
             model=SCENE_EXTRACTION["model"],
             messages=[{"role": "user", "content": prompt}],
             options={"temperature": 0.1}
         )
-        result = response["message"]["content"]
-
-        print("\n" + "="*60)
-        print("OLLAMA RESPONSE:")
-        print("="*60)
-        print(result)
-        print("="*60 + "\n")
-
-        return result
+        return response["message"]["content"]
     except Exception as e:
         raise SceneExtractionError(f"Ollama request failed: {e}")
 
@@ -106,11 +80,7 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
 
     scenes = [_dict_to_scene(item, transcript) for item in data]
     scenes = [s for s in scenes if s is not None]
-    scenes = _fill_timing_gaps(scenes)
-    # #region agent log
-    _debug_log("scene_extraction.py:_parse_scenes", "scenes_parsed", {"count": len(scenes), "scenes": [{"desc": s.description[:50], "keywords": s.keywords, "start": s.start_time, "end": s.end_time} for s in scenes]}, "H1")
-    # #endregion
-    return scenes
+    return _fill_timing_gaps(scenes)
 
 
 def _fill_timing_gaps(scenes: list[Scene]) -> list[Scene]:
