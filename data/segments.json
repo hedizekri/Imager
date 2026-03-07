@@ -1,7 +1,7 @@
 [
   {
     "start": 0.0,
-    "end": 8.0,
+    "end": 6.12,
     "keywords": [
       "coffee",
       "cafe",
@@ -11,8 +11,8 @@
     ]
   },
   {
-    "start": 8.0,
-    "end": 13.0,
+    "start": 6.12,
+    "end": 7.12,
     "keywords": [
       "dog",
       "walk",
@@ -22,36 +22,80 @@
     ]
   },
   {
-    "start": 13.0,
-    "end": 17.0,
+    "start": 7.12,
+    "end": 13.280000000000001,
+    "keywords": [
+      "exercise",
+      "workout",
+      "sport",
+      "gym",
+      "routine"
+    ]
+  },
+  {
+    "start": 13.280000000000001,
+    "end": 16.64,
+    "keywords": [
+      "salad",
+      "vegetables",
+      "healthy",
+      "protein",
+      "meal"
+    ]
+  },
+  {
+    "start": 16.64,
+    "end": 22.48,
+    "keywords": [
+      "water",
+      "hydration",
+      "drink",
+      "glass",
+      "daily"
+    ]
+  },
+  {
+    "start": 22.48,
+    "end": 23.48,
     "keywords": [
       "library",
-      "study",
-      "book",
       "reading",
-      "exam"
+      "book",
+      "study",
+      "knowledge"
     ]
   },
   {
-    "start": 17.0,
-    "end": 23.0,
+    "start": 23.48,
+    "end": 29.52,
     "keywords": [
-      "doctor",
-      "appointment",
-      "routine",
-      "measurement",
-      "health"
+      "dessert",
+      "sweet",
+      "enjoy",
+      "treat",
+      "snack"
     ]
   },
   {
-    "start": 23.0,
-    "end": 29.0,
+    "start": 29.52,
+    "end": 33.84,
     "keywords": [
-      "cinema",
-      "movie",
-      "popcorn",
-      "screen",
-      "enjoy"
+      "water",
+      "hydration",
+      "drink",
+      "glass",
+      "daily"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "water",
+      "hydration",
+      "drink",
+      "glass",
+      "daily"
     ]
   }
 ]

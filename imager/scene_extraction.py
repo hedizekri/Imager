@@ -26,12 +26,15 @@ Output ONLY this JSON format, nothing else:
 JSON:"""
 
 
-def extract_scenes(transcript: Transcript) -> list[Scene]:
+def extract_scenes(transcript: Transcript, debug: bool = False) -> list[Scene]:
     if not transcript.full_text.strip():
         raise ValueError("Transcript is empty")
 
     segments_text = _format_segments_with_timestamps(transcript.segments)
     prompt = SCENE_PROMPT.format(segments=segments_text)
+    if debug:
+        print("[debug] scene prompt content:")
+        print(prompt)
 
     for attempt in range(MAX_RETRIES):
         response = _call_ollama(prompt)

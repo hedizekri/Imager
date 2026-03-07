@@ -30,6 +30,9 @@ def run_pipeline(
 
     print("Transcribing...")
     transcript = transcribe_audio(audio_path, lang)
+    _debug(debug, "full text (transcribed):")
+    if debug:
+        print(transcript.full_text)
     if transcript.segments:
         s0, sL = transcript.segments[0], transcript.segments[-1]
         preview = f"{len(transcript.segments)} segments, {s0.start_time:.1f}s–{sL.end_time:.1f}s"
@@ -45,7 +48,7 @@ def run_pipeline(
     print(f"Saved {transcript_path}")
 
     print("Extracting scenes...")
-    scenes = extract_scenes(transcript)
+    scenes = extract_scenes(transcript, debug=debug)
     if scenes:
         _debug(debug, f"scenes: {len(scenes)} | first keywords: {scenes[0].keywords[:5]} | last: {scenes[-1].keywords[:5]}")
     segments_path = data_dir / "segments.json"
