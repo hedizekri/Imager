@@ -21,7 +21,11 @@ def transcribe_audio(audio_path: Path, language: str | None = None) -> Transcrip
         device=TRANSCRIPTION["device"]
     )
 
-    result = model.transcribe(str(audio_path), language=lang)
+    result = model.transcribe(
+        str(audio_path),
+        language=lang,
+        word_timestamps=True
+    )
 
     segments = _parse_segments(result["segments"])
     return Transcript(full_text=result["text"], segments=segments)

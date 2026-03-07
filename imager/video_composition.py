@@ -39,12 +39,15 @@ def compose_video(
     # #region agent log
     _debug_log("video_composition.py:compose_video", "clips_created", {"count": len(clips), "clip_durations": [c.duration for c in clips]}, "H4")
     # #endregion
+
+    clips = _extend_clips_to_audio(clips, audio.duration)
+
     video = concatenate_videoclips(clips, method="compose")
     # #region agent log
     _debug_log("video_composition.py:compose_video", "after_concatenate", {"concatenated_duration": video.duration, "audio_duration": audio.duration}, "H4")
     # #endregion
 
-    video = _match_duration_to_audio(video, audio.duration)
+    video = _trim_to_audio(video, audio.duration)
     # #region agent log
     _debug_log("video_composition.py:compose_video", "after_duration_match", {"final_video_duration": video.duration}, "H5")
     # #endregion
@@ -80,13 +83,24 @@ def _load_and_trim_clip(match: MatchedScene) -> VideoFileClip:
     return clip.loop(duration=target_duration)
 
 
-def _match_duration_to_audio(video: VideoFileClip, audio_duration: float):
+def _extend_clips_to_audio(
+    clips: list[VideoFileClip],
+    audio_duration: float
+) -> list[VideoFileClip]:
+    total_duration = sum(c.duration for c in clips)
+
+    if total_duration >= audio_duration:
+        return clips
+
+    remaining = audio_duration - total_duration
+    last_clip = clips[-1]
+    extended_last = last_clip.loop(duration=last_clip.duration + remaining)
+    return clips[:-1] + [extended_last]
+
+
+def _trim_to_audio(video: VideoFileClip, audio_duration: float):
     if video.duration > audio_duration:
         return video.subclip(0, audio_duration)
-
-    if video.duration < audio_duration:
-        return video.loop(duration=audio_duration)
-
     return video
 
 

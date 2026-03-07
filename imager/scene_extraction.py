@@ -20,27 +20,30 @@ class SceneExtractionError(Exception):
 
 MAX_RETRIES = 3
 
-SCENE_PROMPT = """You are a JSON generator. Extract visual scenes from this transcript.
+SCENE_PROMPT = """Create one JSON scene per segment. Use segment INDEX numbers [0], [1], [2], etc.
 
-Transcript:
-{transcript}
+{segments}
 
-Output ONLY a valid JSON array. No explanations, no other text.
-Each object needs: description, keywords (5-8 SINGLE words, no phrases), start_time, end_time.
+For each segment, output:
+- description: what a camera would show
+- keywords: 5 SINGLE ENGLISH words for video search (dog, coffee, library, doctor, cinema)
+- segment_start: the [X] number
+- segment_end: same as segment_start for single segments
 
-IMPORTANT: keywords must be SINGLE WORDS only. Never use phrases like "exam preparation" - use "exam" and "preparation" as separate words.
+CRITICAL: segment_start and segment_end must be INDEX numbers like 0, 1, 2, 3, 4 - NOT timestamps!
 
-Example format:
-[{{"description": "person in bus", "keywords": ["bus", "passenger", "travel", "sitting"], "start_time": 0.0, "end_time": 5.0}}]
+Output ONLY this JSON format, nothing else:
+[{{"description": "person drinking coffee", "keywords": ["coffee", "cafe", "drink", "cup", "morning"], "segment_start": 0, "segment_end": 0}}, {{"description": "person walking dog", "keywords": ["dog", "walk", "pet", "outdoor", "leash"], "segment_start": 1, "segment_end": 1}}]
 
-JSON array:"""
+JSON:"""
 
 
 def extract_scenes(transcript: Transcript) -> list[Scene]:
     if not transcript.full_text.strip():
         raise SceneExtractionError("Transcript is empty")
 
-    prompt = SCENE_PROMPT.format(transcript=transcript.full_text)
+    segments_text = _format_segments_with_timestamps(transcript.segments)
+    prompt = SCENE_PROMPT.format(segments=segments_text)
 
     for attempt in range(MAX_RETRIES):
         response = _call_ollama(prompt)
@@ -54,14 +57,39 @@ def extract_scenes(transcript: Transcript) -> list[Scene]:
     raise SceneExtractionError("Failed to extract scenes after retries")
 
 
+def _format_segments_with_timestamps(segments: list) -> str:
+    lines = []
+    for i, seg in enumerate(segments):
+        lines.append(f"[{i}] ({seg.start_time:.1f}s - {seg.end_time:.1f}s): {seg.text}")
+    result = "\n".join(lines)
+    # #region agent log
+    _debug_log("scene_extraction.py:_format_segments", "transcript_segments", {"count": len(segments), "segments": [{"idx": i, "start": s.start_time, "end": s.end_time, "text": s.text[:40]} for i, s in enumerate(segments)]}, "H6")
+    # #endregion
+    return result
+
+
 def _call_ollama(prompt: str) -> str:
+    print("\n" + "="*60)
+    print("OLLAMA PROMPT:")
+    print("="*60)
+    print(prompt)
+    print("="*60 + "\n")
+
     try:
         response = ollama.chat(
             model=SCENE_EXTRACTION["model"],
             messages=[{"role": "user", "content": prompt}],
             options={"temperature": 0.1}
         )
-        return response["message"]["content"]
+        result = response["message"]["content"]
+
+        print("\n" + "="*60)
+        print("OLLAMA RESPONSE:")
+        print("="*60)
+        print(result)
+        print("="*60 + "\n")
+
+        return result
     except Exception as e:
         raise SceneExtractionError(f"Ollama request failed: {e}")
 
@@ -77,71 +105,112 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
         raise SceneExtractionError(f"Expected list, got {type(data)}")
 
     scenes = [_dict_to_scene(item, transcript) for item in data]
+    scenes = [s for s in scenes if s is not None]
+    scenes = _fill_timing_gaps(scenes)
     # #region agent log
-    _debug_log("scene_extraction.py:_parse_scenes", "scenes_before_fix", {"count": len(scenes), "scenes": [{"desc": s.description[:50], "keywords": s.keywords, "start": s.start_time, "end": s.end_time} for s in scenes]}, "H1")
-    # #endregion
-    scenes = _fix_scene_durations(scenes, transcript)
-    # #region agent log
-    _debug_log("scene_extraction.py:_parse_scenes", "scenes_after_fix", {"count": len(scenes), "scenes": [{"desc": s.description[:50], "keywords": s.keywords, "start": s.start_time, "end": s.end_time} for s in scenes]}, "H1")
+    _debug_log("scene_extraction.py:_parse_scenes", "scenes_parsed", {"count": len(scenes), "scenes": [{"desc": s.description[:50], "keywords": s.keywords, "start": s.start_time, "end": s.end_time} for s in scenes]}, "H1")
     # #endregion
     return scenes
 
 
+def _fill_timing_gaps(scenes: list[Scene]) -> list[Scene]:
+    if not scenes:
+        return scenes
+
+    sorted_scenes = sorted(scenes, key=lambda s: s.start_time)
+    adjusted = []
+
+    for i, scene in enumerate(sorted_scenes):
+        new_start = 0.0 if i == 0 else adjusted[i - 1].end_time
+        new_end = sorted_scenes[i + 1].start_time if i < len(sorted_scenes) - 1 \
+            else scene.end_time
+
+        adjusted.append(Scene(
+            description=scene.description,
+            keywords=scene.keywords,
+            start_time=new_start,
+            end_time=new_end
+        ))
+
+    return adjusted
+
+
 def _extract_json_array(text: str) -> str:
-    start = text.find("[")
-    if start == -1:
+    arrays = []
+    pos = 0
+
+    while pos < len(text):
+        start = text.find("[", pos)
+        if start == -1:
+            break
+
+        bracket_count = 0
+        end = start
+        for i, char in enumerate(text[start:], start):
+            if char == "[":
+                bracket_count += 1
+            elif char == "]":
+                bracket_count -= 1
+                if bracket_count == 0:
+                    end = i + 1
+                    break
+
+        if bracket_count != 0:
+            break
+
+        array_str = text[start:end]
+        try:
+            parsed = json.loads(array_str)
+            if isinstance(parsed, list):
+                arrays.extend(parsed)
+        except json.JSONDecodeError:
+            pass
+
+        pos = end
+
+    if not arrays:
         raise SceneExtractionError(f"No JSON array found in: {text[:200]}")
 
-    bracket_count = 0
-    end = start
-    for i, char in enumerate(text[start:], start):
-        if char == "[":
-            bracket_count += 1
-        elif char == "]":
-            bracket_count -= 1
-            if bracket_count == 0:
-                end = i + 1
-                break
-
-    if bracket_count != 0:
-        raise SceneExtractionError("Unbalanced brackets in JSON")
-
-    return text[start:end]
+    return json.dumps(arrays)
 
 
-def _dict_to_scene(data: dict, transcript: Transcript) -> Scene:
-    max_time = transcript.segments[-1].end_time if transcript.segments else 0
+def _find_segment_by_time(segments: list, time_value: float) -> int:
+    for i, seg in enumerate(segments):
+        if seg.start_time <= time_value < seg.end_time:
+            return i
+        if abs(seg.start_time - time_value) < 1.0:
+            return i
+    return 0
+
+
+def _dict_to_scene(data: dict, transcript: Transcript) -> Scene | None:
+    segments = transcript.segments
+    if not segments:
+        return None
+
+    seg_start = int(data.get("segment_start", 0))
+    seg_end_raw = data.get("segment_end", data.get("segments_end", None))
+    seg_end = int(seg_end_raw) if seg_end_raw is not None else seg_start
+
+    if seg_start >= len(segments):
+        seg_start = _find_segment_by_time(segments, seg_start)
+    if seg_end >= len(segments):
+        seg_end = _find_segment_by_time(segments, seg_end)
+
+    seg_start = max(0, min(seg_start, len(segments) - 1))
+    seg_end = max(0, min(seg_end, len(segments) - 1))
+
+    if seg_end < seg_start:
+        seg_end = seg_start
+
+    start_time = segments[seg_start].start_time
+    end_time = segments[seg_end].end_time
 
     return Scene(
         description=data.get("description", ""),
         keywords=data.get("keywords", []),
-        start_time=min(float(data.get("start_time", 0)), max_time),
-        end_time=min(float(data.get("end_time", 0)), max_time)
+        start_time=start_time,
+        end_time=end_time
     )
 
 
-def _fix_scene_durations(scenes: list[Scene], transcript: Transcript) -> list[Scene]:
-    if not scenes:
-        return scenes
-
-    max_time = transcript.segments[-1].end_time if transcript.segments else 0
-    sorted_scenes = sorted(scenes, key=lambda s: s.start_time)
-    fixed = []
-
-    for i, scene in enumerate(sorted_scenes):
-        if scene.end_time <= scene.start_time:
-            if i + 1 < len(sorted_scenes):
-                next_start = sorted_scenes[i + 1].start_time
-            else:
-                next_start = max_time
-            scene = Scene(
-                description=scene.description,
-                keywords=scene.keywords,
-                start_time=scene.start_time,
-                end_time=next_start
-            )
-
-        if scene.end_time > scene.start_time:
-            fixed.append(scene)
-
-    return fixed
