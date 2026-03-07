@@ -5,9 +5,9 @@ from pathlib import Path
 from urllib.parse import quote_plus
 
 from imager.artgrid_browser import (
-    connect_firefox,
+    connect_chromium,
     open_first_result,
-    open_first_result_via_firefox,
+    open_first_result_via_chromium,
 )
 from imager.config import (
     PATHS,
@@ -17,11 +17,6 @@ from imager.config import (
 from imager.scene_extraction import extract_scenes
 from imager.transcription import transcribe_audio
 from imager.video_composition import organize_downloads
-
-try:
-    from selenium.common.exceptions import WebDriverException
-except ImportError:
-    WebDriverException = Exception
 
 
 def _debug(debug: bool, msg: str) -> None:
@@ -35,7 +30,7 @@ def run_pipeline(
     language: str | None = None,
     organize: bool = False,
     open_in_browser: bool = False,
-    connect_firefox_flag: bool = False,
+    connect_flag: bool = False,
     debug: bool = False,
 ) -> None:
     if not audio_path.exists():
@@ -89,19 +84,23 @@ def run_pipeline(
         print(url)
 
     if open_in_browser and segment_urls:
-        if connect_firefox_flag:
+        if connect_flag:
             try:
-                driver, firefox_process = connect_firefox()
-            except WebDriverException as e:
+                playwright, browser, page = connect_chromium()
+            except Exception as e:
                 raise ValueError(
-                    f"Could not connect to Firefox: {e}. Ensure geckodriver is installed and in PATH."
+                    f"Could not connect to Chromium/Chrome: {e}. Start the browser with "
+                    "--remote-debugging-port=9222 (e.g. macOS: /Applications/Chromium.app/Contents/MacOS/Chromium "
+                    "--remote-debugging-port=9222 or Google Chrome with the same flag)."
                 ) from e
             try:
+                context = page.context
                 for url in segment_urls:
-                    open_first_result_via_firefox(driver, url)
+                    tab = context.new_page()
+                    open_first_result_via_chromium(tab, url)
             finally:
-                driver.quit()
-                firefox_process.terminate()
+                browser.close()
+                playwright.stop()
         else:
             for url in segment_urls:
                 open_first_result(url)
@@ -122,25 +121,29 @@ def _read_urls_from_file(path: Path) -> list[str]:
 def run_urls_only(
     urls: list[str],
     open_in_browser: bool,
-    connect_firefox_flag: bool,
+    connect_flag: bool,
 ) -> None:
     if not urls:
         raise ValueError("At least one URL required")
-    if not open_in_browser and not connect_firefox_flag:
-        raise ValueError("In URL mode, use --open or --connect-firefox to open the URLs")
-    if connect_firefox_flag:
+    if not open_in_browser and not connect_flag:
+        raise ValueError("In URL mode, use --open or --connect to open the URLs")
+    if connect_flag:
         try:
-            driver, firefox_process = connect_firefox()
-        except WebDriverException as e:
+            playwright, browser, page = connect_chromium()
+        except Exception as e:
             raise ValueError(
-                f"Could not connect to Firefox: {e}. Ensure geckodriver is installed and in PATH."
+                f"Could not connect to Chromium/Chrome: {e}. Start the browser with "
+                "--remote-debugging-port=9222 (e.g. macOS: /Applications/Chromium.app/Contents/MacOS/Chromium "
+                "--remote-debugging-port=9222 or Google Chrome with the same flag)."
             ) from e
         try:
+            context = page.context
             for url in urls:
-                open_first_result_via_firefox(driver, url)
+                tab = context.new_page()
+                open_first_result_via_chromium(tab, url)
         finally:
-            driver.quit()
-            firefox_process.terminate()
+            browser.close()
+            playwright.stop()
     else:
         for url in urls:
             open_first_result(url)
@@ -152,7 +155,7 @@ def parse_args() -> argparse.Namespace:
         parser.add_argument("urls", nargs="*", help="Artgrid search URLs (or use --file)")
         parser.add_argument("-f", "--file", nargs="?", const=PATHS["urls_file"], default=None, type=Path, metavar="PATH", help="Read URLs from file (one per line). Omit PATH to use input/urls.txt")
         parser.add_argument("--open", action="store_true", dest="open_in_browser", help="Open each URL in browser")
-        parser.add_argument("--connect-firefox", action="store_true", dest="connect_firefox_flag", help="Open first result per URL in Firefox")
+        parser.add_argument("--connect", action="store_true", dest="connect_flag", help="Connect to Chromium/Chrome with remote debugging; open first result per URL")
         args = parser.parse_args(sys.argv[2:])
         if args.file is not None:
             path = args.file
@@ -166,7 +169,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("-l", "--language", type=str, default=TRANSCRIPTION["default_language"], help="Audio language code")
     parser.add_argument("--organize", action="store_true", help="Move and rename downloads to output by timestamp")
     parser.add_argument("--open", action="store_true", dest="open_in_browser", help="Open each segment in default browser (search URL only)")
-    parser.add_argument("--connect-firefox", action="store_true", dest="connect_firefox_flag", help="Connect to Firefox started with -marionette -start-debugger-server 2828; opens first result per segment")
+    parser.add_argument("--connect", action="store_true", dest="connect_flag", help="Connect to Chromium/Chrome with remote debugging; open first result per segment")
     parser.add_argument("-d", "--debug", action="store_true", help="Print concise debug summaries")
     return parser.parse_args()
 
@@ -174,7 +177,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     if hasattr(args, "urls"):
-        run_urls_only(args.urls, args.open_in_browser, args.connect_firefox_flag)
+        run_urls_only(args.urls, args.open_in_browser, args.connect_flag)
         return
     run_pipeline(
         args.audio,
@@ -182,7 +185,7 @@ def main() -> None:
         args.language,
         args.organize,
         args.open_in_browser,
-        args.connect_firefox_flag,
+        args.connect_flag,
         args.debug,
     )
 

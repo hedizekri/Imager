@@ -1,5 +1,4 @@
 from pathlib import Path
-import sys
 
 BASE_DIR = Path(__file__).parent.parent
 
@@ -25,14 +24,9 @@ SCENE_EXTRACTION = {
 ARTGRID_SEARCH_BASE = "https://artgrid.io/"
 ARTGRID_FIRST_RESULT_SELECTOR = "a[href*='/clip/']"
 
-BROWSER_OPEN_DELAY_MIN = 3.0
-BROWSER_OPEN_DELAY_MAX = 5.0
+BROWSER_OPEN_DELAY_MIN = 1.0
+BROWSER_OPEN_DELAY_MAX = 2.0
+BROWSER_SELECTOR_TIMEOUT_MS = 8000
+BROWSER_NAVIGATION_TIMEOUT_MS = 12000
 
-FIREFOX_MARIONETTE_PORT = 2828
-
-if sys.platform == "darwin":
-    FIREFOX_BINARY = "/Applications/Firefox.app/Contents/MacOS/firefox"
-elif sys.platform == "win32":
-    FIREFOX_BINARY = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
-else:
-    FIREFOX_BINARY = "firefox"
+CHROMIUM_CDP_URL = "http://localhost:9222"
