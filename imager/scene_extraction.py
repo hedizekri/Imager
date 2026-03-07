@@ -8,7 +8,7 @@ from imager.types import Scene, Transcript
 
 MAX_RETRIES = 2
 
-SCENE_PROMPT = """Goal: from each transcript segment, derive search terms that will find B-roll footage matching what is being said in that segment.
+SCENE_PROMPT = """Goal: from each transcript segment, derive search terms that will find B-roll footage matching what is being said in that segment. Your keywords are used for separate stock-video searches; give each segment a distinct visual focus so each search returns different clips, and do not repeat the same topic or theme words in every segment.
 
 Create one JSON scene per segment. Use segment INDEX numbers [0], [1], [2], etc.
 
@@ -16,7 +16,7 @@ Create one JSON scene per segment. Use segment INDEX numbers [0], [1], [2], etc.
 
 For each segment, output:
 - description: what a camera would show
-- keywords: exactly 5 SINGLE ENGLISH words for stock video search. Derive keywords from the content of that segment (topic, actions, objects mentioned). Segment text may be in any language; translate its meaning into English search terms. Do not use generic or unrelated terms.
+- keywords: exactly 3 SINGLE ENGLISH words for stock video search. Derive keywords from the content of that segment (topic, actions, objects mentioned). Segment text may be in any language; translate its meaning into English search terms. Do not use generic or unrelated terms. The 3 keywords must be distinct concepts: no synonyms or repetition of the same idea (e.g. avoid "exercise", "workout", "training" together). Each keyword should suggest a different type of visual: e.g. one for place or setting, one for object or detail, one for action or mood, so the search can return varied footage.
 - segment_start: the [X] number
 - segment_end: same as segment_start for single segments
 
@@ -24,10 +24,10 @@ If two consecutive or thematically similar segments would get the same or very s
 
 CRITICAL: segment_start and segment_end must be INDEX numbers like 0, 1, 2, 3, 4 - NOT timestamps!
 
-The example below is only for the JSON structure and the reasoning: read the segment content, then output 5 English search terms that match what is said. Apply that same structure and reasoning to the segments above, whatever their subject (sport, food, travel, work, nature, etc.).
+The example below is only for the JSON structure and the reasoning: read the segment content, then output 3 English search terms that match what is said. The 3 keywords in each example are distinct and suggest different visuals (e.g. place, object or action, mood or concept). Apply that same structure and reasoning to the segments above, whatever their subject (sport, food, travel, work, nature, etc.).
 
 Output ONLY this JSON format, nothing else:
-[{{"description": "person exercising in gym", "keywords": ["workout", "exercise", "gym", "fitness", "training"], "segment_start": 0, "segment_end": 0}}, {{"description": "team meeting in office", "keywords": ["meeting", "office", "team", "business", "discussion"], "segment_start": 1, "segment_end": 1}}]
+[{{"description": "person exercising in gym", "keywords": ["workout", "gym", "fitness"], "segment_start": 0, "segment_end": 0}}, {{"description": "team meeting in office", "keywords": ["meeting", "office", "discussion"], "segment_start": 1, "segment_end": 1}}]
 
 JSON:"""
 
@@ -49,7 +49,9 @@ def extract_scenes(transcript: Transcript, debug: bool = False) -> list[Scene]:
         except ValueError as e:
             if attempt == MAX_RETRIES - 1:
                 raise e
-            print(f"  Retry {attempt + 1}/{MAX_RETRIES}: LLM output invalid")
+            print(f"  Retry {attempt + 1}/{MAX_RETRIES}: LLM output invalid: {e}")
+            if debug:
+                print(f"[debug] raw LLM response (first 1000 chars):\n{response[:1000]}")
 
     raise ValueError("Failed to extract scenes after retries")
 

@@ -50,7 +50,7 @@ def run_pipeline(
     print("Extracting scenes...")
     scenes = extract_scenes(transcript, debug=debug)
     if scenes:
-        _debug(debug, f"scenes: {len(scenes)} | first keywords: {scenes[0].keywords[:5]} | last: {scenes[-1].keywords[:5]}")
+        _debug(debug, f"scenes: {len(scenes)} | first keywords: {scenes[0].keywords[:3]} | last: {scenes[-1].keywords[:3]}")
     segments_path = data_dir / "segments.json"
     segments_path.write_text(
         json.dumps(

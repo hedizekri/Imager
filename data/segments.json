@@ -1,57 +1,74 @@
 [
   {
     "start": 0.0,
-    "end": 29.0,
+    "end": 7.0,
     "keywords": [
-      "coffee",
-      "arabica",
-      "coffee shop",
-      "drink",
-      "morning"
+      "Japan",
+      "gang",
+      "criminal"
     ]
   },
   {
-    "start": 8.0,
-    "end": 29.0,
+    "start": 7.0,
+    "end": 13.0,
     "keywords": [
-      "dog",
-      "golden retriever",
-      "walk",
-      "pet",
-      "playful"
+      "Japan",
+      "transparency",
+      "operation"
     ]
   },
   {
     "start": 13.0,
-    "end": 29.0,
+    "end": 17.0,
     "keywords": [
-      "library",
-      "study",
-      "exam",
-      "books",
-      "friends"
+      "offices",
+      "members",
+      "Japanese"
     ]
   },
   {
     "start": 17.0,
-    "end": 29.0,
+    "end": 25.0,
     "keywords": [
-      "doctor",
-      "routine",
-      "measurement",
-      "health",
-      "assurance"
+      "loyalty",
+      "members",
+      "Japanese"
     ]
   },
   {
-    "start": 23.0,
-    "end": 29.0,
+    "start": 25.0,
+    "end": 27.0,
     "keywords": [
-      "cinema",
-      "Inception",
-      "movie",
-      "date",
-      "film"
+      "tattoo",
+      "members",
+      "Japanese"
+    ]
+  },
+  {
+    "start": 27.0,
+    "end": 32.0,
+    "keywords": [
+      "ritual",
+      "members",
+      "Japanese"
+    ]
+  },
+  {
+    "start": 32.0,
+    "end": 38.0,
+    "keywords": [
+      "legislation",
+      "Japan",
+      "Yakuza"
+    ]
+  },
+  {
+    "start": 38.0,
+    "end": 43.0,
+    "keywords": [
+      "power",
+      "Japan",
+      "Yakuza"
     ]
   }
 ]
