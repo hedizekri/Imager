@@ -1,74 +1,74 @@
 [
   {
     "start": 0.0,
-    "end": 7.0,
+    "end": 29.52,
     "keywords": [
-      "Japan",
-      "gang",
-      "criminal"
+      "gym",
+      "equipment",
+      "energy"
     ]
   },
   {
-    "start": 7.0,
-    "end": 13.0,
+    "start": 29.52,
+    "end": 38.64,
     "keywords": [
-      "Japan",
-      "transparency",
-      "operation"
+      "kitchen",
+      "ingredients",
+      "vibrant"
     ]
   },
   {
-    "start": 13.0,
-    "end": 17.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "offices",
-      "members",
-      "Japanese"
+      "hydration",
+      "nature",
+      "enjoyment"
     ]
   },
   {
-    "start": 17.0,
-    "end": 25.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "loyalty",
-      "members",
-      "Japanese"
+      "diet",
+      "balance",
+      "simplicity"
     ]
   },
   {
-    "start": 25.0,
-    "end": 27.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "tattoo",
-      "members",
-      "Japanese"
+      "market",
+      "selection",
+      "freshness"
     ]
   },
   {
-    "start": 27.0,
-    "end": 32.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "ritual",
-      "members",
-      "Japanese"
+      "hydration",
+      "nature",
+      "enjoyment"
     ]
   },
   {
-    "start": 32.0,
-    "end": 38.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "legislation",
-      "Japan",
-      "Yakuza"
+      "outdoor",
+      "activity",
+      "freedom"
     ]
   },
   {
-    "start": 38.0,
-    "end": 43.0,
+    "start": 33.84,
+    "end": 38.64,
     "keywords": [
-      "power",
-      "Japan",
-      "Yakuza"
+      "hydration",
+      "nature",
+      "enjoyment"
     ]
   }
 ]

@@ -20,7 +20,7 @@ For each segment, output:
 - segment_start: the [X] number
 - segment_end: same as segment_start for single segments
 
-If two consecutive or thematically similar segments would get the same or very similar keywords, vary the second: use different visuals, synonyms, or a different aspect of the topic so search results are not duplicated.
+If two consecutive or thematically similar segments would get the same or very similar keywords, vary the second: use different visuals, synonyms, or a different aspect of the topic so search results are not duplicated. No two segments may have the same set of 3 keywords; every segment must have a unique keyword set so each search returns a different clip.
 
 CRITICAL: segment_start and segment_end must be INDEX numbers like 0, 1, 2, 3, 4 - NOT timestamps!
 
@@ -86,7 +86,24 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
         raise ValueError(f"Expected list, got {type(data)}")
 
     scenes = [_dict_to_scene(item, transcript) for item in data]
-    return [s for s in scenes if s is not None]
+    scenes = [s for s in scenes if s is not None]
+    _raise_if_duplicate_keyword_sets(scenes)
+    return scenes
+
+
+def _raise_if_duplicate_keyword_sets(scenes: list[Scene]) -> None:
+    seen: dict[tuple[str, ...], list[int]] = {}
+    for i, scene in enumerate(scenes):
+        if not scene.keywords:
+            continue
+        sig = tuple(sorted(k.lower() for k in scene.keywords))
+        if sig not in seen:
+            seen[sig] = []
+        seen[sig].append(i)
+    duplicates = {sig: indices for sig, indices in seen.items() if len(indices) > 1}
+    if duplicates:
+        parts = [f"segments {indices}: {list(sig)}" for sig, indices in duplicates.items()]
+        raise ValueError(f"Duplicate keyword sets: {'; '.join(parts)}")
 
 
 def _extract_json_array(text: str) -> str:
