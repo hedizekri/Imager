@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python: imager (current file)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "args": [],
+            "console": "integratedTerminal",
+            "env": { "PYTHONPATH": "${workspaceFolder}" }
+        },
+        {
+            "name": "Python: imager.main",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "imager.main",
+            "args": ["input/test_story.mp3"],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: imager.main (--organize)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "imager.main",
+            "args": ["input/test_story.mp3", "--organize"],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": false
+        }
+    ]
+}

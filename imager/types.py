@@ -16,7 +16,6 @@ class Transcript:
 
 @dataclass
 class Scene:
-    description: str
     keywords: list[str]
     start_time: float
     end_time: float

@@ -13,11 +13,11 @@ TRANSCRIPTION = {
     "model_size": "base",
     "default_language": "fr",
     "device": "cpu",
+    "compute_type": "float32",
 }
 
 SCENE_EXTRACTION = {
     "model": "phi3",
-    "ollama_host": "http://localhost:11434",
 }
 
-ARTGRID_SEARCH_BASE = "https://artgrid.io/search"
+ARTGRID_SEARCH_BASE = "https://artgrid.io/"

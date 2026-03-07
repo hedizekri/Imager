@@ -5,10 +5,6 @@ from imager.config import PATHS
 from imager.types import Scene
 
 
-class CompositionError(Exception):
-    pass
-
-
 def organize_downloads(
     segments: list[Scene],
     downloads_dir: Path | None = None,
@@ -18,16 +14,15 @@ def organize_downloads(
     output_dir = output_dir or PATHS["output_dir"]
 
     if not downloads_dir.exists():
-        raise CompositionError(f"Downloads folder not found: {downloads_dir}")
+        raise ValueError(f"Downloads folder not found: {downloads_dir}")
 
-    video_extensions = {".mp4", ".webm", ".mov", ".mkv"}
     files = sorted(
-        [f for f in downloads_dir.iterdir() if f.suffix.lower() in video_extensions],
+        [f for f in downloads_dir.iterdir() if f.suffix.lower() == ".mp4"],
         key=lambda p: p.stat().st_mtime,
     )
 
     if len(files) < len(segments):
-        raise CompositionError(
+        raise ValueError(
             f"Not enough video files: {len(files)} in {downloads_dir}, "
             f"expected {len(segments)} (one per segment)"
         )
@@ -37,15 +32,11 @@ def organize_downloads(
 
     for i, scene in enumerate(segments):
         src = files[i]
-        name = _timestamp_filename(scene.start_time)
+        s = int(scene.start_time)
+        m = int((scene.start_time - s) * 1000)
+        name = f"{s:06d}_{m:03d}.mp4"
         dest = output_dir / name
         shutil.move(str(src), str(dest))
         result.append(dest)
 
     return result
-
-
-def _timestamp_filename(start_time: float) -> str:
-    seconds = int(start_time)
-    millis = int((start_time - seconds) * 1000)
-    return f"{seconds:06d}_{millis:03d}.mp4"

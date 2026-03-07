@@ -1,42 +1,23 @@
 from pathlib import Path
 
-import whisper
+from faster_whisper import WhisperModel
 
 from imager.config import TRANSCRIPTION
 from imager.types import Transcript, TranscriptSegment
 
 
-class TranscriptionError(Exception):
-    pass
-
-
 def transcribe_audio(audio_path: Path, language: str | None = None) -> Transcript:
-    if not audio_path.exists():
-        raise TranscriptionError(f"Audio file not found: {audio_path}")
-
     lang = language or TRANSCRIPTION["default_language"]
-
-    model = whisper.load_model(
+    model = WhisperModel(
         TRANSCRIPTION["model_size"],
-        device=TRANSCRIPTION["device"]
+        device=TRANSCRIPTION["device"],
+        compute_type=TRANSCRIPTION["compute_type"],
     )
-
-    result = model.transcribe(
-        str(audio_path),
-        language=lang,
-        word_timestamps=True
-    )
-
-    segments = _parse_segments(result["segments"])
-    return Transcript(full_text=result["text"], segments=segments)
-
-
-def _parse_segments(raw_segments: list[dict]) -> list[TranscriptSegment]:
-    return [
-        TranscriptSegment(
-            text=seg["text"].strip(),
-            start_time=seg["start"],
-            end_time=seg["end"]
-        )
-        for seg in raw_segments
+    segments_gen, _ = model.transcribe(str(audio_path), language=lang)
+    segments_list = list(segments_gen)
+    segments = [
+        TranscriptSegment(text=s.text.strip(), start_time=s.start, end_time=s.end)
+        for s in segments_list
     ]
+    full_text = " ".join(s.text for s in segments_list).strip()
+    return Transcript(full_text=full_text, segments=segments)

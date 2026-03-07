@@ -1,0 +1,57 @@
+[
+  {
+    "start": 0.0,
+    "end": 8.0,
+    "keywords": [
+      "coffee",
+      "cafe",
+      "drink",
+      "cup",
+      "morning"
+    ]
+  },
+  {
+    "start": 8.0,
+    "end": 13.0,
+    "keywords": [
+      "dog",
+      "walk",
+      "pet",
+      "outdoor",
+      "leash"
+    ]
+  },
+  {
+    "start": 13.0,
+    "end": 17.0,
+    "keywords": [
+      "library",
+      "study",
+      "book",
+      "reading",
+      "exam"
+    ]
+  },
+  {
+    "start": 17.0,
+    "end": 23.0,
+    "keywords": [
+      "doctor",
+      "appointment",
+      "routine",
+      "measurement",
+      "health"
+    ]
+  },
+  {
+    "start": 23.0,
+    "end": 29.0,
+    "keywords": [
+      "cinema",
+      "movie",
+      "popcorn",
+      "screen",
+      "enjoy"
+    ]
+  }
+]
