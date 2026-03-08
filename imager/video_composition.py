@@ -32,10 +32,7 @@ def organize_downloads(
 
     for i, scene in enumerate(segments):
         src = files[i]
-        s = int(scene.start_time)
-        m = int((scene.start_time - s) * 1000)
-        name = f"{s:06d}_{m:03d}.mp4"
-        dest = output_dir / name
+        dest = output_dir / src.name
         shutil.move(str(src), str(dest))
         result.append(dest)
 

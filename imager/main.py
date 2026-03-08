@@ -9,6 +9,11 @@ from imager.artgrid_browser import (
     open_first_result,
     open_first_result_via_chromium,
 )
+from imager.artgrid_download import (
+    build_download_filename,
+    download_video,
+    get_video_url_from_page,
+)
 from imager.config import (
     PATHS,
     TRANSCRIPTION,
@@ -31,6 +36,7 @@ def run_pipeline(
     organize: bool = False,
     open_in_browser: bool = False,
     connect_flag: bool = False,
+    download_flag: bool = False,
     debug: bool = False,
 ) -> None:
     if not audio_path.exists():
@@ -83,7 +89,10 @@ def run_pipeline(
         segment_urls.append(url)
         print(url)
 
-    if open_in_browser and segment_urls:
+    if download_flag and not connect_flag:
+        raise ValueError("--download requires --connect")
+
+    if (open_in_browser or download_flag) and segment_urls:
         if connect_flag:
             try:
                 playwright, browser, page = connect_chromium()
@@ -95,9 +104,21 @@ def run_pipeline(
                 ) from e
             try:
                 context = page.context
-                for url in segment_urls:
+                downloads_dir = PATHS["downloads_dir"]
+                if download_flag:
+                    downloads_dir.mkdir(parents=True, exist_ok=True)
+                for scene, url in zip(scenes, segment_urls):
                     tab = context.new_page()
                     open_first_result_via_chromium(tab, url)
+                    if download_flag:
+                        video_url = get_video_url_from_page(tab)
+                        if video_url:
+                            dest = downloads_dir / build_download_filename(
+                                scene, None
+                            )
+                            download_video(tab, video_url, dest)
+                        else:
+                            print("[download] Skipped (no video URL)")
             finally:
                 browser.close()
                 playwright.stop()
@@ -122,11 +143,14 @@ def run_urls_only(
     urls: list[str],
     open_in_browser: bool,
     connect_flag: bool,
+    download_flag: bool = False,
 ) -> None:
     if not urls:
         raise ValueError("At least one URL required")
     if not open_in_browser and not connect_flag:
         raise ValueError("In URL mode, use --open or --connect to open the URLs")
+    if download_flag and not connect_flag:
+        raise ValueError("--download requires --connect")
     if connect_flag:
         try:
             playwright, browser, page = connect_chromium()
@@ -138,9 +162,22 @@ def run_urls_only(
             ) from e
         try:
             context = page.context
+            downloads_dir = PATHS["downloads_dir"]
+            if download_flag:
+                downloads_dir.mkdir(parents=True, exist_ok=True)
             for url in urls:
                 tab = context.new_page()
                 open_first_result_via_chromium(tab, url)
+                if download_flag:
+                    clip_url = tab.url
+                    video_url = get_video_url_from_page(tab)
+                    if video_url:
+                        dest = downloads_dir / build_download_filename(
+                            None, clip_url
+                        )
+                        download_video(tab, video_url, dest)
+                    else:
+                        print("[download] Skipped (no video URL)")
         finally:
             browser.close()
             playwright.stop()
@@ -156,6 +193,7 @@ def parse_args() -> argparse.Namespace:
         parser.add_argument("-f", "--file", nargs="?", const=PATHS["urls_file"], default=None, type=Path, metavar="PATH", help="Read URLs from file (one per line). Omit PATH to use input/urls.txt")
         parser.add_argument("--open", action="store_true", dest="open_in_browser", help="Open each URL in browser")
         parser.add_argument("--connect", action="store_true", dest="connect_flag", help="Connect to Chromium/Chrome with remote debugging; open first result per URL")
+        parser.add_argument("--download", action="store_true", dest="download_flag", help="Download first result video per URL (requires --connect)")
         args = parser.parse_args(sys.argv[2:])
         if args.file is not None:
             path = args.file
@@ -170,6 +208,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--organize", action="store_true", help="Move and rename downloads to output by timestamp")
     parser.add_argument("--open", action="store_true", dest="open_in_browser", help="Open each segment in default browser (search URL only)")
     parser.add_argument("--connect", action="store_true", dest="connect_flag", help="Connect to Chromium/Chrome with remote debugging; open first result per segment")
+    parser.add_argument("--download", action="store_true", dest="download_flag", help="Download first result video per segment (requires --connect)")
     parser.add_argument("-d", "--debug", action="store_true", help="Print concise debug summaries")
     return parser.parse_args()
 
@@ -177,7 +216,12 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     if hasattr(args, "urls"):
-        run_urls_only(args.urls, args.open_in_browser, args.connect_flag)
+        run_urls_only(
+            args.urls,
+            args.open_in_browser,
+            args.connect_flag,
+            getattr(args, "download_flag", False),
+        )
         return
     run_pipeline(
         args.audio,
@@ -186,6 +230,7 @@ def main() -> None:
         args.organize,
         args.open_in_browser,
         args.connect_flag,
+        args.download_flag,
         args.debug,
     )
 
