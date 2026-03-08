@@ -109,16 +109,19 @@ def run_pipeline(
                     downloads_dir.mkdir(parents=True, exist_ok=True)
                 for scene, url in zip(scenes, segment_urls):
                     tab = context.new_page()
-                    open_first_result_via_chromium(tab, url)
-                    if download_flag:
-                        video_url = get_video_url_from_page(tab)
-                        if video_url:
-                            dest = downloads_dir / build_download_filename(
-                                scene, None
-                            )
-                            download_video(tab, video_url, dest)
-                        else:
-                            print("[download] Skipped (no video URL)")
+                    try:
+                        open_first_result_via_chromium(tab, url)
+                        if download_flag:
+                            video_url = get_video_url_from_page(tab)
+                            if video_url:
+                                dest = downloads_dir / build_download_filename(
+                                    scene, None
+                                )
+                                download_video(tab, video_url, dest)
+                            else:
+                                print("[download] Skipped (no video URL)")
+                    finally:
+                        tab.close()
             finally:
                 browser.close()
                 playwright.stop()
@@ -167,17 +170,20 @@ def run_urls_only(
                 downloads_dir.mkdir(parents=True, exist_ok=True)
             for url in urls:
                 tab = context.new_page()
-                open_first_result_via_chromium(tab, url)
-                if download_flag:
-                    clip_url = tab.url
-                    video_url = get_video_url_from_page(tab)
-                    if video_url:
-                        dest = downloads_dir / build_download_filename(
-                            None, clip_url
-                        )
-                        download_video(tab, video_url, dest)
-                    else:
-                        print("[download] Skipped (no video URL)")
+                try:
+                    open_first_result_via_chromium(tab, url)
+                    if download_flag:
+                        clip_url = tab.url
+                        video_url = get_video_url_from_page(tab)
+                        if video_url:
+                            dest = downloads_dir / build_download_filename(
+                                None, clip_url
+                            )
+                            download_video(tab, video_url, dest)
+                        else:
+                            print("[download] Skipped (no video URL)")
+                finally:
+                    tab.close()
         finally:
             browser.close()
             playwright.stop()

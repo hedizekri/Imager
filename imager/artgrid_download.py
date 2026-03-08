@@ -1,4 +1,6 @@
 import re
+import shutil
+import subprocess
 from pathlib import Path
 
 from imager.config import (
@@ -25,13 +27,13 @@ def build_download_filename(
         start_s = int(scene.start_time) % 60
         end_m = int(scene.end_time) // 60
         end_s = int(scene.end_time) % 60
-        time_part = f"{start_m:02d}:{start_s:02d}-{end_m:02d}:{end_s:02d}"
+        time_part = f"{start_m:02d}-{start_s:02d}-{end_m:02d}-{end_s:02d}"
         kw_part = "_".join(scene.keywords) if scene.keywords else "clip"
         name = f"{time_part}-{_sanitize(kw_part)}.mp4"
     elif clip_url is not None:
         match = re.search(r"/clip/\d+/([^/?]+)", clip_url)
         slug = match.group(1) if match else "clip"
-        name = f"00:00-00:01-{_sanitize(slug)}.mp4"
+        name = f"00-00-00-01-{_sanitize(slug)}.mp4"
     else:
         raise ValueError("Either scene or clip_url must be provided")
     if len(name) > MAX_FILENAME_LEN:
@@ -58,11 +60,7 @@ def get_video_url_from_page(page) -> str | None:
     if not href or not isinstance(href, str):
         print("[download] Video element had no src")
         return None
-    print(f"[download] Raw video src: {href[:120]}{'...' if len(href) > 120 else ''}")
-    if href.startswith("blob:"):
-        print("[download] WARNING: blob URL cannot be fetched by request.get (browser-only)")
-    elif ".m3u8" in href or "m3u8" in href.lower():
-        print("[download] WARNING: HLS manifest URL; response will be playlist text, not full video")
+    print(f"[download] Raw video src: {href[:80]}{'...' if len(href) > 80 else ''}")
     if not href.startswith("http"):
         base = ARTGRID_SEARCH_BASE.rstrip("/")
         href = base + ("/" + href.lstrip("/"))
@@ -72,8 +70,36 @@ def get_video_url_from_page(page) -> str | None:
 def download_video(page, video_url: str, dest_path: Path) -> None:
     if not video_url.startswith("http"):
         raise ValueError(f"Invalid video URL: {video_url}")
-    print(f"[download] Fetching: {video_url[:100]}{'...' if len(video_url) > 100 else ''}")
     dest_path.parent.mkdir(parents=True, exist_ok=True)
+    is_hls = ".m3u8" in video_url.lower()
+    if is_hls:
+        if not shutil.which("ffmpeg"):
+            raise ValueError(
+                "ffmpeg not found; install ffmpeg to download HLS videos "
+                "(e.g. brew install ffmpeg on macOS)"
+            )
+        print("[download] HLS URL, using ffmpeg")
+        referer = "Referer: https://artgrid.io/\r\n"
+        args = [
+            "ffmpeg", "-y", "-headers", referer,
+            "-i", video_url, "-c", "copy", str(dest_path),
+        ]
+        try:
+            subprocess.run(
+                args,
+                check=True,
+                capture_output=True,
+                timeout=300,
+            )
+        except subprocess.CalledProcessError as e:
+            stderr = (e.stderr or b"").decode("utf-8", errors="replace")[:500]
+            raise ValueError(f"ffmpeg failed: {stderr}") from e
+        except subprocess.TimeoutExpired as e:
+            raise ValueError("ffmpeg timed out after 300s") from e
+        size = dest_path.stat().st_size
+        print(f"[download] Saved {dest_path} ({size} bytes)")
+        return
+    print(f"[download] Fetching: {video_url[:100]}{'...' if len(video_url) > 100 else ''}")
     response = page.request.get(video_url)
     status = response.status
     headers = response.headers

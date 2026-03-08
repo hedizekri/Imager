@@ -131,6 +131,7 @@ def _dict_to_scene(data: dict, transcript: Transcript) -> Scene | None:
     seg_end = max(0, min(int(seg_end_raw) if seg_end_raw is not None else seg_start, len(segments) - 1))
     if seg_end < seg_start:
         seg_end = seg_start
+    seg_end = seg_start
 
     start_time = segments[seg_start].start_time
     end_time = segments[seg_end].end_time
