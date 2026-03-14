@@ -49,7 +49,12 @@ def run_pipeline(
     if not audio_path.exists():
         raise ValueError(f"Audio file not found: {audio_path}")
 
-    project_name = _project_name(audio_path)
+    base = _project_name(audio_path)
+    project_name = base
+    n = 2
+    while (PATHS["downloads_dir"] / project_name).exists():
+        project_name = f"{base}_{n}"
+        n += 1
     project_downloads = PATHS["downloads_dir"] / project_name
     project_output = (output_path or PATHS["output_dir"]) / project_name
 
@@ -148,6 +153,8 @@ def run_pipeline(
         )
         shutil.copy2(audio_path, project_output / audio_path.name)
         print(f"Organized {len(result)} files and audio into {project_output}")
+        if project_downloads.exists():
+            shutil.rmtree(project_downloads)
     else:
         print("Download videos (first result per URL) then run with --organize.")
 
