@@ -1,5 +1,6 @@
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 from urllib.parse import quote_plus
@@ -15,6 +16,7 @@ from imager.artgrid_download import (
     get_video_url_from_page,
 )
 from imager.config import (
+    DEFAULT_PROJECT_NAME,
     PATHS,
     TRANSCRIPTION,
     ARTGRID_SEARCH_BASE,
@@ -29,6 +31,11 @@ def _debug(debug: bool, msg: str) -> None:
         print(f"[debug] {msg}")
 
 
+def _project_name(audio_path: Path) -> str:
+    name = Path(audio_path).stem.lower().replace(" ", "_")
+    return name if name else DEFAULT_PROJECT_NAME
+
+
 def run_pipeline(
     audio_path: Path,
     output_path: Path | None = None,
@@ -41,6 +48,10 @@ def run_pipeline(
 ) -> None:
     if not audio_path.exists():
         raise ValueError(f"Audio file not found: {audio_path}")
+
+    project_name = _project_name(audio_path)
+    project_downloads = PATHS["downloads_dir"] / project_name
+    project_output = (output_path or PATHS["output_dir"]) / project_name
 
     data_dir = PATHS["data_dir"]
     data_dir.mkdir(parents=True, exist_ok=True)
@@ -104,9 +115,9 @@ def run_pipeline(
                 ) from e
             try:
                 context = page.context
-                downloads_dir = PATHS["downloads_dir"]
                 if download_flag:
-                    downloads_dir.mkdir(parents=True, exist_ok=True)
+                    project_downloads.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(audio_path, project_downloads / audio_path.name)
                 for scene, url in zip(scenes, segment_urls):
                     tab = context.new_page()
                     try:
@@ -114,7 +125,7 @@ def run_pipeline(
                         if download_flag:
                             video_url = get_video_url_from_page(tab)
                             if video_url:
-                                dest = downloads_dir / build_download_filename(
+                                dest = project_downloads / build_download_filename(
                                     scene, None
                                 )
                                 download_video(tab, video_url, dest)
@@ -130,9 +141,13 @@ def run_pipeline(
                 open_first_result(url)
 
     if organize:
-        out_dir = output_path or PATHS["output_dir"]
-        result = organize_downloads(scenes, output_dir=out_dir)
-        print(f"Organized {len(result)} files into {out_dir}")
+        result = organize_downloads(
+            scenes,
+            downloads_dir=project_downloads,
+            output_dir=project_output,
+        )
+        shutil.copy2(audio_path, project_output / audio_path.name)
+        print(f"Organized {len(result)} files and audio into {project_output}")
     else:
         print("Download videos (first result per URL) then run with --organize.")
 

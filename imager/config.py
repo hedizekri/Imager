@@ -2,6 +2,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
+DEFAULT_PROJECT_NAME = "untitled"
+
 PATHS = {
     "input_dir": BASE_DIR / "input",
     "data_dir": BASE_DIR / "data",

@@ -3,72 +3,63 @@
     "start": 0.0,
     "end": 6.12,
     "keywords": [
-      "gym",
-      "equipment",
-      "energetic"
-    ]
-  },
-  {
-    "start": 6.12,
-    "end": 7.12,
-    "keywords": [
-      "kitchen",
-      "ingredients",
-      "vibrant"
-    ]
-  },
-  {
-    "start": 7.12,
-    "end": 13.280000000000001,
-    "keywords": [
-      "park",
-      "trail",
-      "morning"
-    ]
-  },
-  {
-    "start": 13.280000000000001,
-    "end": 16.64,
-    "keywords": [
-      "water",
-      "fruits",
-      "hydration"
-    ]
-  },
-  {
-    "start": 16.64,
-    "end": 22.48,
-    "keywords": [
-      "meditation",
-      "nature",
-      "peaceful"
-    ]
-  },
-  {
-    "start": 22.48,
-    "end": 23.48,
-    "keywords": [
-      "reading",
-      "corner",
-      "comfortable"
-    ]
-  },
-  {
-    "start": 23.48,
-    "end": 29.52,
-    "keywords": [
-      "kitchen",
-      "ingredients",
-      "nutritious"
+      "home workout",
+      "dumbbell",
+      "motivation"
     ]
   },
   {
     "start": 29.52,
     "end": 33.84,
     "keywords": [
-      "bath",
-      "water",
-      "calming"
+      "dietary plan",
+      "kitchen",
+      "balance"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "hydration",
+      "outdoor run",
+      "refreshment"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "meal prep",
+      "kitchen tools",
+      "nutrition"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "social dining",
+      "comfort food",
+      "enjoyment"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "hydration habit",
+      "daily routine",
+      "water"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "consistent training",
+      "workout environment",
+      "routine"
     ]
   }
 ]
