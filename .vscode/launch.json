@@ -30,6 +30,13 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
             "justMyCode": false
+        },
+        {
+            "name": "Attach to Premiere Pro",
+            "type": "extendscript-debug",
+            "request": "attach",
+            "hostApp": "PPRO",
+            "script": "${workspaceFolder}/scripts/premiere/ImagerBrollToSequence.jsx"
         }
     ]
 }
