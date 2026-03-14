@@ -1,47 +1,74 @@
 [
   {
     "start": 0.0,
-    "end": 29.0,
+    "end": 6.12,
     "keywords": [
-      "coffee",
-      "barista",
+      "gym",
+      "equipment",
+      "energetic"
+    ]
+  },
+  {
+    "start": 6.12,
+    "end": 7.12,
+    "keywords": [
+      "kitchen",
+      "ingredients",
+      "vibrant"
+    ]
+  },
+  {
+    "start": 7.12,
+    "end": 13.280000000000001,
+    "keywords": [
+      "park",
+      "trail",
       "morning"
     ]
   },
   {
-    "start": 8.0,
-    "end": 29.0,
+    "start": 13.280000000000001,
+    "end": 16.64,
     "keywords": [
-      "dog",
-      "retriever",
-      "playful"
+      "water",
+      "fruits",
+      "hydration"
     ]
   },
   {
-    "start": 13.0,
-    "end": 29.0,
+    "start": 16.64,
+    "end": 22.48,
     "keywords": [
-      "study",
-      "book",
-      "quiet"
+      "meditation",
+      "nature",
+      "peaceful"
     ]
   },
   {
-    "start": 17.0,
-    "end": 29.0,
+    "start": 22.48,
+    "end": 23.48,
     "keywords": [
-      "doctor",
-      "routine",
-      "calm"
+      "reading",
+      "corner",
+      "comfortable"
     ]
   },
   {
-    "start": 23.0,
-    "end": 29.0,
+    "start": 23.48,
+    "end": 29.52,
     "keywords": [
-      "cinema",
-      "Inception",
-      "entertainment"
+      "kitchen",
+      "ingredients",
+      "nutritious"
+    ]
+  },
+  {
+    "start": 29.52,
+    "end": 33.84,
+    "keywords": [
+      "bath",
+      "water",
+      "calming"
     ]
   }
 ]
