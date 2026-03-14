@@ -2,32 +2,36 @@
 // Run from VS Code ExtendScript (Run without Debugging). No ScriptUI in Premiere.
 
 var TICKS_PER_SECOND = 254016000000;
-var PRESETS = {
-  vertical: { width: 1080, height: 1920, fps: 30 },
-  horizontal: { width: 1920, height: 1080, fps: 30 }
-};
 var VIDEO_PATTERN = /^(\d{2})-(\d{2})-(\d{2})-(\d{2})/;
 var AUDIO_EXT = [".mp3", ".wav", ".m4a", ".aiff"];
 var VIDEO_EXT = [".mp4", ".mov", ".avi", ".mkv"];
 
+function inArray(arr, val) {
+  for (var i = 0; i < arr.length; i++) if (arr[i] === val) return true;
+  return false;
+}
+
 function showDialog() {
   var f = File.openDialog("Select any file in the Imager output folder", "*", false);
   if (!f) return;
-  var folderPath = f.parent.fsName;
-  var useVertical = confirm("Use Vertical (TikTok 9:16)?\nOK = Vertical, Cancel = Horizontal (YouTube 16:9)");
-  runMain(folderPath, useVertical ? "vertical" : "horizontal");
+  runMain(f.parent.fsName);
 }
 
-function runMain(folderPath, presetKey) {
+function runMain(folderPath) {
   var folder = new Folder(folderPath);
   if (!folder.exists) {
     alert("Folder not found: " + folderPath);
     return;
   }
 
-  var preset = PRESETS[presetKey];
-  if (!preset) {
-    alert("Unknown preset.");
+  var project = app.project;
+  if (!project) {
+    alert("No active project. Open or create a project first.");
+    return;
+  }
+  var seq = project.activeSequence;
+  if (!seq) {
+    alert("Create a sequence and set its format (vertical/horizontal) in Premiere, then select it and run the script again.");
     return;
   }
 
@@ -41,8 +45,8 @@ function runMain(folderPath, presetKey) {
     var ext = "";
     var idx = name.lastIndexOf(".");
     if (idx >= 0) ext = name.substring(idx);
-    if (AUDIO_EXT.indexOf(ext) >= 0) audioFiles.push(f);
-    if (VIDEO_EXT.indexOf(ext) >= 0) videoFiles.push(f);
+    if (inArray(AUDIO_EXT, ext)) audioFiles.push(f);
+    if (inArray(VIDEO_EXT, ext)) videoFiles.push(f);
   }
 
   if (audioFiles.length !== 1) {
@@ -63,53 +67,33 @@ function runMain(folderPath, presetKey) {
     alert("Skipped " + (videoFiles.length - parsed.length) + " video(s) without timestamp in filename.");
   }
 
-  var project = app.project;
-  if (!project) {
-    alert("No active project. Open or create a project first.");
-    return;
-  }
-
-  var sequenceName = folder.name;
-  var sequenceId = "imager-" + sequenceName.replace(/\s/g, "_") + "-" + Math.floor(Math.random() * 1e9);
-  var seq = project.createNewSequence(sequenceName, sequenceId);
-  if (!seq) {
-    alert("Could not create sequence.");
-    return;
-  }
-
-  try {
-    var settings = seq.getSettings();
-    settings.frameSizeHorizontal = preset.width;
-    settings.frameSizeVertical = preset.height;
-    seq.setSettings(settings);
-  } catch (e) {
-    // Some versions may not allow changing size; continue
-  }
-
   var bin = project.rootItem.createBin("Imager Import");
-  var toImport = [audioFiles[0]].concat(parsed.map(function(p) { return p.file; }));
-  var pathList = toImport.map(function(f) { return f.fsName; });
+  var toImport = [audioFiles[0]];
+  for (var t = 0; t < parsed.length; t++) toImport.push(parsed[t].file);
+  var pathList = [];
+  for (var u = 0; u < toImport.length; u++) pathList.push(toImport[u].fsName);
   project.importFiles(pathList, 1, bin, false);
 
   var audioFileName = audioFiles[0].name;
+  var audioFileNameLower = audioFileName.toLowerCase();
   var n = bin.children.numItems;
   var audioItem = null;
   var videoItemsByName = {};
   for (var j = 0; j < n; j++) {
     var item = bin.children[j];
-    if (item.type !== 1 && item.name) {
-      if (item.name === audioFileName)
-        audioItem = item;
-      else
-        videoItemsByName[item.name] = item;
-    }
+    if (!item.name) continue;
+    var nameLower = item.name.toLowerCase();
+    var ext = nameLower.indexOf(".") >= 0 ? nameLower.substring(nameLower.lastIndexOf(".")) : "";
+    if (nameLower === audioFileNameLower || (!audioItem && inArray(AUDIO_EXT, ext)))
+      audioItem = item;
+    else
+      videoItemsByName[item.name] = item;
   }
   if (!audioItem) {
     alert("Could not find imported audio in project.");
     return;
   }
 
-  app.project.activeSequence = seq;
   var ticksZero = "0";
   seq.audioTracks[0].overwriteClip(audioItem, ticksZero);
 
@@ -131,7 +115,7 @@ function runMain(folderPath, presetKey) {
     seq.videoTracks[0].overwriteClip(item, startTicks);
   }
 
-  alert("Sequence \"" + sequenceName + "\" created with " + parsed.length + " video clip(s) and audio.");
+  alert("Done. Placed " + parsed.length + " video clip(s) and audio into \"" + seq.name + "\".");
 }
 
 function parseVideoFilenames(videoFiles) {

@@ -9,39 +9,66 @@
     ]
   },
   {
+    "start": 23.48,
+    "end": 29.52,
+    "keywords": [
+      "healthy eating",
+      "protein-rich foods",
+      "vibrant"
+    ]
+  },
+  {
     "start": 29.52,
     "end": 33.84,
     "keywords": [
-      "protein-rich foods",
-      "vegetables",
-      "diet plan"
+      "water intake",
+      "nature walk",
+      "sunlight"
     ]
   },
   {
     "start": 33.84,
     "end": 38.64,
     "keywords": [
-      "hydration",
-      "picnic area",
-      "refreshment"
+      "balanced diet",
+      "gourmet cooking",
+      "satisfaction"
     ]
   },
   {
     "start": 33.84,
     "end": 38.64,
     "keywords": [
-      "healthy cooking",
-      "kitchen garden produce",
-      "culinary arts"
+      "farmers market",
+      "organic selection",
+      "vitality"
     ]
   },
   {
     "start": 33.84,
     "end": 38.64,
     "keywords": [
-      "mindfulness",
-      "nature tranquility",
-      "sunrise ambiance"
+      "water consumption",
+      "peaceful ambiance",
+      "serenity"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "hydration routine",
+      "water habits",
+      "daily life"
+    ]
+  },
+  {
+    "start": 33.84,
+    "end": 38.64,
+    "keywords": [
+      "consistent training",
+      "determined effort",
+      "physical activity"
     ]
   }
 ]
