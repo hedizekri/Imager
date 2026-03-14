@@ -12,8 +12,8 @@
 From the project root:
 
 ```bash
-python3.12 -m venv imager_venv
-source imager_venv/bin/activate
+python3.12 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
