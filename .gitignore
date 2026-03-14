@@ -8,11 +8,7 @@ __pycache__/
 *.so
 .Python
 
-imager/bin/
-imager/lib/
-imager/include/
-imager/share/
-imager/pyvenv.cfg
+imager_venv/
 
 .DS_Store
 *.swp
