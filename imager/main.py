@@ -2,6 +2,7 @@ import argparse
 import json
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote_plus
 
@@ -50,11 +51,7 @@ def run_pipeline(
         raise ValueError(f"Audio file not found: {audio_path}")
 
     base = _project_name(audio_path)
-    project_name = base
-    n = 2
-    while (PATHS["downloads_dir"] / project_name).exists():
-        project_name = f"{base}_{n}"
-        n += 1
+    project_name = f"{base}_{datetime.now().strftime('%y%m%d%H%M%S')}"
     project_downloads = PATHS["downloads_dir"] / project_name
     project_output = (output_path or PATHS["output_dir"]) / project_name
 

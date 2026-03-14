@@ -4,71 +4,80 @@
     "end": 6.12,
     "keywords": [
       "home workout",
-      "dumbbell",
-      "motivation"
+      "equipment",
+      "routine"
+    ]
+  },
+  {
+    "start": 6.12,
+    "end": 7.12,
+    "keywords": [
+      "dietary advice",
+      "proteins",
+      "meal prep"
+    ]
+  },
+  {
+    "start": 7.12,
+    "end": 13.280000000000001,
+    "keywords": [
+      "hydration",
+      "salad bar",
+      "nature ambiance"
+    ]
+  },
+  {
+    "start": 13.280000000000001,
+    "end": 16.64,
+    "keywords": [
+      "mindfulness",
+      "green space",
+      "peaceful environment"
+    ]
+  },
+  {
+    "start": 16.64,
+    "end": 22.48,
+    "keywords": [
+      "sunset run",
+      "sandy shore",
+      "ocean view"
+    ]
+  },
+  {
+    "start": 22.48,
+    "end": 23.48,
+    "keywords": [
+      "social dining",
+      "cooking group",
+      "healthy eating"
     ]
   },
   {
     "start": 23.48,
     "end": 29.52,
     "keywords": [
-      "healthy eating",
-      "protein-rich foods",
-      "vibrant"
+      "morning stretches",
+      "sunlight exposure",
+      "peaceful start"
     ]
   },
   {
     "start": 29.52,
     "end": 33.84,
     "keywords": [
-      "water intake",
-      "nature walk",
-      "sunlight"
+      "reading time",
+      "library atmosphere",
+      "quiet study space"
     ]
   },
   {
     "start": 33.84,
     "end": 38.64,
     "keywords": [
-      "balanced diet",
-      "gourmet cooking",
-      "satisfaction"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "farmers market",
-      "organic selection",
-      "vitality"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "water consumption",
-      "peaceful ambiance",
-      "serenity"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "hydration routine",
-      "water habits",
-      "daily life"
-    ]
-  },
-  {
-    "start": 33.84,
-    "end": 38.64,
-    "keywords": [
-      "consistent training",
-      "determined effort",
-      "physical activity"
+      "relaxation ritual",
+      "home office",
+      "nature touch"
     ]
   }
 ]
