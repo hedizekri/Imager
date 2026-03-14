@@ -12,8 +12,8 @@
 From the project root:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python3.12 -m venv imager
+source imager/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -50,10 +50,6 @@ Automate with Chromium/Chrome (first result opened per segment; optional downloa
    **Chromium (macOS):**
    ```bash
    /Applications/Chromium.app/Contents/MacOS/Chromium --remote-debugging-port=9222
-   ```
-   **Google Chrome (macOS):**
-   ```bash
-   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --remote-debugging-port=9222
    ```
 
 2. In another terminal, from the project root with the venv activated:
