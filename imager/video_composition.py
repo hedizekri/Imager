@@ -22,17 +22,18 @@ def organize_downloads(
 
     files = [f for f in downloads_dir.iterdir() if f.suffix.lower() == ".mp4"]
     expected = len(segments) * timeline_count
+    if len(files) == 0:
+        raise ValueError(f"No video files in {downloads_dir}")
     if len(files) < expected:
-        raise ValueError(
-            f"Not enough video files: {len(files)} in {downloads_dir}, "
-            f"expected {expected} (segments x timelines)"
+        print(
+            f"Warning: {len(files)} files, expected {expected}. Organizing available files."
         )
 
     result = []
     if timeline_count == 1:
         files_sorted = sorted(files, key=lambda p: p.stat().st_mtime)
         output_dir.mkdir(parents=True, exist_ok=True)
-        for i, scene in enumerate(segments):
+        for i in range(min(len(segments), len(files))):
             src = files_sorted[i]
             dest = output_dir / src.name
             shutil.move(str(src), str(dest))

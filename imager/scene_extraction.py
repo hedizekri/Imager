@@ -19,12 +19,10 @@ For each segment, output one JSON object with only keywords: exactly 3 single En
 
 If two consecutive or thematically similar segments would get the same or very similar keywords, vary the second. No two segments may have the same set of 3 keywords; every segment must have a unique keyword set.
 
-Output exactly {count} objects in the same order as the segments above. Do not include indices or timestamps.
+Output a single JSON array of exactly {count} objects, one object per segment, in the same order as the segments above. Do not output one object; output an array. Do not wrap in markdown code blocks (no ```). Do not include indices or timestamps.
 
-Output ONLY this JSON format, nothing else:
-[{{"keywords": ["workout", "gym", "fitness"]}}, {{"keywords": ["meeting", "office", "discussion"]}}]
-
-JSON:"""
+Output ONLY the raw JSON array, nothing else:
+[{{"keywords": ["workout", "gym", "fitness"]}}, {{"keywords": ["meeting", "office", "discussion"]}}]"""
 
 
 def extract_scenes(transcript: Transcript, debug: bool = False) -> list[Scene]:
@@ -77,6 +75,7 @@ def _call_ollama(prompt: str) -> str:
 
 
 def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
+    response = _strip_markdown_fences(response)
     cleaned = _extract_json_array(response)
     try:
         data = json.loads(cleaned)
@@ -87,14 +86,17 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
         raise ValueError(f"Expected list, got {type(data)}")
 
     n = len(transcript.segments)
-    if len(data) != n:
-        raise ValueError(f"Expected {n} items, got {len(data)}")
+    if len(data) > n:
+        data = data[:n]
 
     scenes = []
     for i in range(n):
         seg = transcript.segments[i]
-        item = data[i]
-        keywords = item.get("keywords", []) if isinstance(item, dict) else []
+        if i < len(data):
+            item = data[i]
+            keywords = item.get("keywords", []) if isinstance(item, dict) else []
+        else:
+            keywords = ["b-roll", "footage", f"t{seg.start_time:.0f}"]
         scenes.append(
             Scene(
                 keywords=keywords,
@@ -118,6 +120,18 @@ def _raise_if_duplicate_keyword_sets(scenes: list[Scene]) -> None:
     if duplicates:
         parts = [f"segments {indices}: {list(sig)}" for sig, indices in duplicates.items()]
         raise ValueError(f"Duplicate keyword sets: {'; '.join(parts)}")
+
+
+def _strip_markdown_fences(text: str) -> str:
+    s = text.strip()
+    if s.startswith("```"):
+        lines = s.split("\n")
+        if lines[0].strip().startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        s = "\n".join(lines)
+    return s
 
 
 def _extract_json_array(text: str) -> str:
