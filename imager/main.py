@@ -122,8 +122,12 @@ def run_pipeline(
                 if download_flag:
                     project_downloads.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(audio_path, project_downloads / audio_path.name)
+                total_videos = len(scenes) * timelines
+                video_idx = 0
                 for scene, url in zip(scenes, segment_urls):
                     for ti in range(1, timelines + 1):
+                        video_idx += 1
+                        _debug(debug, f"Video {video_idx}/{total_videos}")
                         tab = context.new_page()
                         try:
                             open_nth_result_via_chromium(tab, url, ti - 1)

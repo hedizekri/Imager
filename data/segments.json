@@ -1,1181 +1,1685 @@
 [
   {
     "start": 0.0,
-    "end": 3.3200000000000003,
+    "end": 4.72,
     "keywords": [
-      "Instagram",
-      "posting",
-      "evenings"
+      "sleeping",
+      "bedding",
+      "comfort"
     ]
   },
   {
-    "start": 3.3200000000000003,
-    "end": 9.36,
+    "start": 4.72,
+    "end": 9.4,
     "keywords": [
-      "LinkedIn",
-      "optimization",
-      "hours"
-    ]
-  },
-  {
-    "start": 9.36,
-    "end": 13.6,
-    "keywords": [
-      "TikTok",
-      "survival",
-      "time-wasting"
-    ]
-  },
-  {
-    "start": 13.6,
-    "end": 18.44,
-    "keywords": [
-      "empire",
-      "building",
-      "others"
-    ]
-  },
-  {
-    "start": 18.44,
-    "end": 22.400000000000002,
-    "keywords": [
-      "competition",
-      "influence",
-      "platforms"
-    ]
-  },
-  {
-    "start": 22.400000000000002,
-    "end": 27.240000000000002,
-    "keywords": [
-      "mathematical truth",
-      "2016",
-      "hidden"
-    ]
-  },
-  {
-    "start": 27.520000000000003,
-    "end": 33.160000000000004,
-    "keywords": [
-      "YouTube workout",
-      "content creation",
+      "subscription",
+      "followers",
       "engagement"
     ]
   },
   {
-    "start": 33.160000000000004,
-    "end": 37.440000000000005,
+    "start": 9.4,
+    "end": 12.4,
     "keywords": [
-      "dispersal",
-      "spread",
-      "reach"
+      "impossible",
+      "challenge",
+      "effort"
     ]
   },
   {
-    "start": 37.440000000000005,
-    "end": 42.32,
+    "start": 12.4,
+    "end": 16.56,
     "keywords": [
-      "paying clients",
-      "income generation",
-      "system operation"
-    ]
-  },
-  {
-    "start": 42.32,
-    "end": 47.8,
-    "keywords": [
-      "video production",
-      "stock footage",
-      "creative process"
-    ]
-  },
-  {
-    "start": 47.8,
-    "end": 51.72,
-    "keywords": [
-      "profit",
-      "sleeping",
-      "dreams"
-    ]
-  },
-  {
-    "start": 51.72,
-    "end": 56.36,
-    "keywords": [
-      "viral",
-      "creator",
-      "branding"
-    ]
-  },
-  {
-    "start": 56.36,
-    "end": 65.0,
-    "keywords": [
-      "frustration",
-      "exploitation",
-      "entrepreneurship"
-    ]
-  },
-  {
-    "start": 65.0,
-    "end": 69.16,
-    "keywords": [
-      "expertise",
-      "haitiquette",
-      "negotiation"
-    ]
-  },
-  {
-    "start": 69.16,
-    "end": 75.0,
-    "keywords": [
-      "energy",
-      "platforms",
-      "investment"
-    ]
-  },
-  {
-    "start": 75.0,
-    "end": 81.2,
-    "keywords": [
-      "conversion",
-      "strategy",
-      "asset"
-    ]
-  },
-  {
-    "start": 81.2,
-    "end": 87.2,
-    "keywords": [
-      "language",
-      "presence",
-      "interaction"
-    ]
-  },
-  {
-    "start": 87.2,
-    "end": 92.56,
-    "keywords": [
-      "YouTube",
-      "commercialization",
-      "content legacy"
-    ]
-  },
-  {
-    "start": 92.56,
-    "end": 98.12,
-    "keywords": [
-      "understanding",
-      "knowledge",
-      "conceptual grasp"
-    ]
-  },
-  {
-    "start": 98.12,
-    "end": 103.4,
-    "keywords": [
-      "platforms",
-      "functionality",
-      "market positioning"
-    ]
-  },
-  {
-    "start": 103.4,
-    "end": 110.04,
-    "keywords": [
-      "conceptualize",
-      "addiction",
-      "algorithm"
-    ]
-  },
-  {
-    "start": 110.04,
-    "end": 115.84,
-    "keywords": [
-      "scrolling",
-      "consumption",
-      "content creation"
-    ]
-  },
-  {
-    "start": 115.84,
-    "end": 122.4,
-    "keywords": [
-      "engagement",
-      "timeline",
-      "visibility"
-    ]
-  },
-  {
-    "start": 122.4,
-    "end": 128.04000000000002,
-    "keywords": [
-      "value",
-      "evaporation",
-      "timeframe"
-    ]
-  },
-  {
-    "start": 128.04000000000002,
-    "end": 133.56,
-    "keywords": [
-      "social media",
-      "interaction",
-      "perception"
-    ]
-  },
-  {
-    "start": 133.56,
-    "end": 139.76,
-    "keywords": [
-      "content",
-      "death",
-      "visibility"
-    ]
-  },
-  {
-    "start": 139.76,
-    "end": 146.84,
-    "keywords": [
-      "disappearance",
-      "algorithm",
-      "recovery"
-    ]
-  },
-  {
-    "start": 146.84,
-    "end": 152.6,
-    "keywords": [
-      "race",
-      "treadmill",
-      "frustration"
-    ]
-  },
-  {
-    "start": 152.6,
-    "end": 158.0,
-    "keywords": [
-      "YouTube",
-      "video",
-      "asset"
-    ]
-  },
-  {
-    "start": 158.0,
-    "end": 164.2,
-    "keywords": [
-      "b-roll",
-      "footage",
-      "t158"
-    ]
-  },
-  {
-    "start": 164.20000000000002,
-    "end": 170.08,
-    "keywords": [
-      "permanent",
-      "healthcare",
-      "institution"
-    ]
-  },
-  {
-    "start": 170.08,
-    "end": 175.08,
-    "keywords": [
-      "time",
-      "clock",
-      "schedule"
-    ]
-  },
-  {
-    "start": 175.08,
-    "end": 180.24,
-    "keywords": [
-      "problem-solving",
-      "decision-making",
-      "strategy"
-    ]
-  },
-  {
-    "start": 180.24,
-    "end": 185.8,
-    "keywords": [
-      "coaching",
-      "marketing",
-      "networking"
-    ]
-  },
-  {
-    "start": 185.8,
-    "end": 190.68,
-    "keywords": [
-      "innovation",
-      "technology",
+      "patience",
+      "learning",
       "growth"
     ]
   },
   {
-    "start": 190.68,
-    "end": 195.72,
+    "start": 16.56,
+    "end": 17.56,
     "keywords": [
-      "etiquette",
-      "searching",
-      "solidity"
+      "success",
+      "achievement",
+      "milestone"
     ]
   },
   {
-    "start": 195.72,
-    "end": 200.4,
+    "start": 17.56,
+    "end": 23.28,
     "keywords": [
-      "expertise",
-      "trustworthy",
-      "service"
+      "beliefs",
+      "creators",
+      "visibility"
     ]
   },
   {
-    "start": 200.4,
-    "end": 205.92000000000002,
+    "start": 23.28,
+    "end": 24.28,
     "keywords": [
-      "price",
-      "discovery",
-      "video"
-    ]
-  },
-  {
-    "start": 205.92000000000002,
-    "end": 211.64000000000001,
-    "keywords": [
-      "consistency",
-      "attractiveness",
-      "prospects"
-    ]
-  },
-  {
-    "start": 211.64000000000001,
-    "end": 217.52,
-    "keywords": [
-      "branding",
-      "reputation",
+      "profitability",
+      "rental",
       "content"
     ]
   },
   {
-    "start": 217.52,
-    "end": 223.84,
+    "start": 24.28,
+    "end": 29.8,
     "keywords": [
-      "sale",
-      "instagram",
-      "discovery"
+      "virality",
+      "consulting",
+      "pricing"
     ]
   },
   {
-    "start": 223.84,
-    "end": 231.04000000000002,
+    "start": 30.8,
+    "end": 32.92,
     "keywords": [
-      "linkedin",
-      "content",
-      "searching"
+      "question",
+      "expertise",
+      "growth"
     ]
   },
   {
-    "start": 231.04000000000002,
-    "end": 238.64000000000001,
+    "start": 32.92,
+    "end": 38.36,
     "keywords": [
-      "tiktok",
-      "stream",
-      "engagement"
+      "subscriptions",
+      "keys",
+      "revenue"
     ]
   },
   {
-    "start": 238.64000000000001,
-    "end": 244.88,
+    "start": 38.36,
+    "end": 41.6,
     "keywords": [
-      "youtube",
-      "find",
-      "video"
+      "views",
+      "successful",
+      "strategy"
     ]
   },
   {
-    "start": 244.88,
-    "end": 251.56,
+    "start": 41.6,
+    "end": 46.08,
     "keywords": [
-      "bite",
-      "prospect",
-      "networking"
+      "why",
+      "permanence",
+      "failure"
     ]
   },
   {
-    "start": 251.56,
-    "end": 258.08,
+    "start": 46.08,
+    "end": 49.64,
     "keywords": [
-      "algorithmic",
-      "intention",
-      "differentiation"
+      "problem",
+      "time",
+      "approach"
     ]
   },
   {
-    "start": 258.08,
-    "end": 264.12,
+    "start": 49.64,
+    "end": 55.040000000000006,
     "keywords": [
-      "consumption",
-      "appetite",
-      "food_preparation"
+      "entrepreneurs",
+      "Youtube",
+      "copycat"
     ]
   },
   {
-    "start": 264.12,
-    "end": 271.44,
+    "start": 55.040000000000006,
+    "end": 56.040000000000006,
     "keywords": [
-      "structure",
-      "accentuation",
-      "stability"
+      "strategy",
+      "competition",
+      "innovation"
     ]
   },
   {
-    "start": 271.44,
-    "end": 277.04,
+    "start": 56.56,
+    "end": 61.92,
     "keywords": [
-      "polarization",
-      "streaming",
-      "rapidity"
+      "algorithm",
+      "community",
+      "expectation"
     ]
   },
   {
-    "start": 277.04,
-    "end": 284.6,
+    "start": 61.92,
+    "end": 66.6,
     "keywords": [
-      "depth",
-      "capitalize",
-      "intention"
+      "effort",
+      "zero-payment",
+      "paradigm shift"
     ]
   },
   {
-    "start": 284.6,
-    "end": 290.28,
+    "start": 66.6,
+    "end": 71.56,
     "keywords": [
-      "purchasing decisions",
-      "real-life choices",
-      "economic behavior"
+      "views",
+      "comparison",
+      "reality check"
     ]
   },
   {
-    "start": 290.28,
-    "end": 296.28,
+    "start": 71.56,
+    "end": 76.8,
     "keywords": [
-      "statistics",
-      "data analysis",
-      "quantitative information"
+      "concrete",
+      "experience",
+      "shift"
     ]
   },
   {
-    "start": 296.28000000000003,
-    "end": 301.44000000000005,
+    "start": 76.8,
+    "end": 80.2,
     "keywords": [
-      "content creation",
-      "video production",
-      "media engagement"
+      "innovation",
+      "strategy",
+      "growth"
     ]
   },
   {
-    "start": 301.44000000000005,
-    "end": 307.92,
+    "start": 80.2,
+    "end": 85.84,
     "keywords": [
-      "ecosystem",
-      "interactivity",
-      "community building"
-    ]
-  },
-  {
-    "start": 307.92,
-    "end": 312.48,
-    "keywords": [
-      "library",
-      "subject coverage",
-      "multifaceted approach"
-    ]
-  },
-  {
-    "start": 312.48,
-    "end": 318.56000000000006,
-    "keywords": [
-      "algorithmic",
-      "reference",
-      "YouTube"
-    ]
-  },
-  {
-    "start": 318.56000000000006,
-    "end": 324.40000000000003,
-    "keywords": [
-      "channel",
       "audience",
-      "subscription"
+      "conversion",
+      "system"
     ]
   },
   {
-    "start": 324.40000000000003,
-    "end": 329.52000000000004,
+    "start": 86.32000000000001,
+    "end": 92.56,
     "keywords": [
-      "consistency",
-      "specialized",
-      "engagement"
+      "intention",
+      "capture",
+      "principle"
     ]
   },
   {
-    "start": 329.52000000000004,
-    "end": 334.72,
+    "start": 92.56,
+    "end": 96.96000000000001,
     "keywords": [
-      "content",
-      "credibility",
-      "boost"
+      "star",
+      "influencer",
+      "sponsorship"
     ]
   },
   {
-    "start": 334.72,
-    "end": 340.32000000000005,
+    "start": 96.96000000000001,
+    "end": 102.04,
     "keywords": [
-      "effect",
-      "composite",
-      "video"
+      "dreams",
+      "collaboration",
+      "brands"
     ]
   },
   {
-    "start": 340.32000000000005,
-    "end": 345.48,
+    "start": 102.04,
+    "end": 103.04,
     "keywords": [
-      "previous experiences",
-      "viewing habits",
-      "engagement"
+      "b-roll",
+      "footage",
+      "t102"
     ]
   },
   {
-    "start": 345.48,
-    "end": 351.12,
+    "start": 103.04,
+    "end": 108.2,
     "keywords": [
-      "motor development",
-      "machine learning",
-      "progress"
+      "YouTube",
+      "sales",
+      "activities"
     ]
   },
   {
-    "start": 351.12,
-    "end": 357.6,
+    "start": 108.2,
+    "end": 112.76,
     "keywords": [
-      "anniversary content",
-      "Instagram milestone",
-      "content creation"
+      "ethics",
+      "business",
+      "conduct"
     ]
   },
   {
-    "start": 357.6,
-    "end": 365.04,
+    "start": 113.36,
+    "end": 117.16000000000001,
     "keywords": [
-      "post count",
-      "stories integration",
-      "visual appeal"
+      "reality",
+      "challenge",
+      "finances"
     ]
   },
   {
-    "start": 365.04,
-    "end": 372.52,
+    "start": 117.16000000000001,
+    "end": 121.12,
     "keywords": [
-      "follower growth",
-      "audience engagement",
-      "social media strategy"
+      "bullying",
+      "management",
+      "criticism"
     ]
   },
   {
-    "start": 372.52,
-    "end": 378.56,
+    "start": 121.12,
+    "end": 125.08000000000001,
     "keywords": [
-      "chance",
-      "viral",
-      "clients"
+      "social media",
+      "influence",
+      "strategy"
     ]
   },
   {
-    "start": 378.56,
-    "end": 385.2,
+    "start": 125.08000000000001,
+    "end": 129.24,
     "keywords": [
       "engagement",
-      "free content",
-      "audience"
+      "click-through rate",
+      "subscribers"
     ]
   },
   {
-    "start": 385.2,
-    "end": 391.24,
+    "start": 129.24,
+    "end": 134.16,
     "keywords": [
-      "durability",
-      "construction",
-      "brand building"
+      "banking",
+      "transaction",
+      "account balance"
     ]
   },
   {
-    "start": 391.24,
-    "end": 396.68,
+    "start": 134.16,
+    "end": 139.6,
     "keywords": [
-      "account death",
-      "visibility loss",
-      "forgotten audience"
+      "hands raised",
+      "help request",
+      "interaction"
     ]
   },
   {
-    "start": 396.68,
-    "end": 404.16,
+    "start": 139.6,
+    "end": 142.4,
     "keywords": [
-      "Youtube presence",
-      "posting frequency",
-      "content strategy"
+      "engagement rate",
+      "conversion",
+      "audience quality"
     ]
   },
   {
-    "start": 404.16,
-    "end": 409.36,
+    "start": 142.4,
+    "end": 148.04,
     "keywords": [
-      "poster",
-      "videos",
-      "indexed"
+      "support",
+      "assistance",
+      "customer service"
     ]
   },
   {
-    "start": 409.36,
-    "end": 414.0,
+    "start": 148.04,
+    "end": 153.04,
     "keywords": [
-      "asset",
-      "intrinsic value",
-      "daily presence"
+      "high-quality views",
+      "concentration",
+      "audience targeting"
     ]
   },
   {
-    "start": 414.0,
-    "end": 419.92,
+    "start": 153.04,
+    "end": 158.4,
     "keywords": [
-      "subject",
-      "clients",
-      "views"
+      "search engine optimization",
+      "specific queries",
+      "investment readiness"
     ]
   },
   {
-    "start": 419.92,
-    "end": 426.24,
-    "keywords": [
-      "revenue",
-      "subscribers",
-      "conversion"
-    ]
-  },
-  {
-    "start": 426.24,
-    "end": 432.20000000000005,
+    "start": 158.4,
+    "end": 163.72,
     "keywords": [
       "content creation",
-      "engagement",
+      "algorithm appeal",
+      "authenticity challenge"
+    ]
+  },
+  {
+    "start": 163.72,
+    "end": 169.2,
+    "keywords": [
+      "advertising analogy",
+      "publication strategy",
+      "unconventional approach"
+    ]
+  },
+  {
+    "start": 169.20000000000002,
+    "end": 174.12,
+    "keywords": [
+      "visual inspiration",
+      "creative process",
+      "engagement tactics"
+    ]
+  },
+  {
+    "start": 174.12,
+    "end": 180.28000000000003,
+    "keywords": [
+      "virality",
+      "content creation",
       "monetization"
     ]
   },
   {
-    "start": 432.2,
-    "end": 437.76,
+    "start": 180.28000000000003,
+    "end": 184.64000000000001,
     "keywords": [
-      "coaching",
+      "sales call",
+      "professional pitch",
+      "networking"
+    ]
+  },
+  {
+    "start": 184.64000000000001,
+    "end": 189.72000000000003,
+    "keywords": [
+      "search engine",
+      "algorithmic platform",
+      "optimization"
+    ]
+  },
+  {
+    "start": 189.72000000000003,
+    "end": 196.60000000000002,
+    "keywords": [
+      "media giant",
+      "online advertising",
+      "content discovery"
+    ]
+  },
+  {
+    "start": 197.12,
+    "end": 200.56,
+    "keywords": [
+      "creativity",
+      "innovation",
+      "brand identity"
+    ]
+  },
+  {
+    "start": 200.56,
+    "end": 205.95999999999998,
+    "keywords": [
+      "strategy",
+      "construction",
+      "ideology"
+    ]
+  },
+  {
+    "start": 205.95999999999998,
+    "end": 209.95999999999998,
+    "keywords": [
+      "searching",
+      "solution-seekers",
+      "motivation"
+    ]
+  },
+  {
+    "start": 209.95999999999998,
+    "end": 212.6,
+    "keywords": [
+      "typing",
+      "consultancy",
+      "YouTube"
+    ]
+  },
+  {
+    "start": 212.6,
+    "end": 218.4,
+    "keywords": [
+      "business",
+      "expansion",
+      "purchase_intent"
+    ]
+  },
+  {
+    "start": 218.4,
+    "end": 223.88,
+    "keywords": [
+      "investment",
+      "growth",
+      "decision-making"
+    ]
+  },
+  {
+    "start": 224.48,
+    "end": 228.07999999999998,
+    "keywords": [
+      "niche_video",
+      "views",
+      "engagement"
+    ]
+  },
+  {
+    "start": 228.07999999999998,
+    "end": 234.0,
+    "keywords": [
+      "clicks",
+      "opportunity",
+      "commercialize"
+    ]
+  },
+  {
+    "start": 234.0,
+    "end": 240.6,
+    "keywords": [
+      "buzz",
+      "publishing",
+      "transactional"
+    ]
+  },
+  {
+    "start": 240.6,
+    "end": 244.0,
+    "keywords": [
+      "needs",
+      "immediate_response",
+      "audience"
+    ]
+  },
+  {
+    "start": 244.0,
+    "end": 250.07999999999998,
+    "keywords": [
+      "content",
+      "interest",
+      "targeted"
+    ]
+  },
+  {
+    "start": 250.08,
+    "end": 254.4,
+    "keywords": [
+      "profile",
+      "signing",
+      "video"
+    ]
+  },
+  {
+    "start": 254.4,
+    "end": 258.72,
+    "keywords": [
+      "working",
+      "months",
+      "years"
+    ]
+  },
+  {
+    "start": 258.72,
+    "end": 265.84000000000003,
+    "keywords": [
+      "indexed",
+      "converting",
+      "sleeping"
+    ]
+  },
+  {
+    "start": 265.84000000000003,
+    "end": 268.88,
+    "keywords": [
+      "asset",
+      "24/7",
+      "sales"
+    ]
+  },
+  {
+    "start": 268.88,
+    "end": 272.48,
+    "keywords": [
+      "Instagram",
+      "story",
+      "disappearing"
+    ]
+  },
+  {
+    "start": 272.48,
+    "end": 276.0,
+    "keywords": [
+      "truth",
+      "friction",
+      "alliance"
+    ]
+  },
+  {
+    "start": 276.0,
+    "end": 279.44,
+    "keywords": [
+      "dislike",
+      "video",
+      "purchase"
+    ]
+  },
+  {
+    "start": 279.44,
+    "end": 285.88,
+    "keywords": [
+      "smoothness",
+      "appeal",
+      "message"
+    ]
+  },
+  {
+    "start": 285.88,
+    "end": 288.92,
+    "keywords": [
+      "convert",
+      "qualify",
+      "repulse"
+    ]
+  },
+  {
+    "start": 288.92,
+    "end": 294.0,
+    "keywords": [
+      "intensity",
+      "focus",
+      "determination"
+    ]
+  },
+  {
+    "start": 294.0,
+    "end": 301.68,
+    "keywords": [
+      "misplace",
+      "audience",
+      "location"
+    ]
+  },
+  {
+    "start": 301.68,
+    "end": 307.8,
+    "keywords": [
+      "hunters",
+      "freeloaders",
+      "shorts"
+    ]
+  },
+  {
+    "start": 307.84000000000003,
+    "end": 313.16,
+    "keywords": [
+      "entrepreneurs",
+      "outdoor",
+      "experimentation"
+    ]
+  },
+  {
+    "start": 313.16,
+    "end": 318.64,
+    "keywords": [
+      "thieves",
+      "time-wasters",
+      "cashless"
+    ]
+  },
+  {
+    "start": 318.64,
+    "end": 322.84000000000003,
+    "keywords": [
+      "elite",
+      "budget",
+      "attraction"
+    ]
+  },
+  {
+    "start": 322.84000000000003,
+    "end": 328.24,
+    "keywords": [
+      "problem",
+      "solution",
+      "premium"
+    ]
+  },
+  {
+    "start": 328.24,
+    "end": 331.52,
+    "keywords": [
+      "friction",
+      "enjoyment",
+      "3%"
+    ]
+  },
+  {
+    "start": 331.52,
+    "end": 335.36,
+    "keywords": [
+      "proof",
+      "standards",
+      "offers"
+    ]
+  },
+  {
+    "start": 335.36,
+    "end": 337.40000000000003,
+    "keywords": [
+      "value",
+      "worth",
+      "quality"
+    ]
+  },
+  {
+    "start": 337.44000000000005,
+    "end": 340.48,
+    "keywords": [
+      "dreams",
+      "aspirations",
+      "success"
+    ]
+  },
+  {
+    "start": 340.48,
+    "end": 345.64000000000004,
+    "keywords": [
+      "polarizer",
+      "disruptor",
+      "non-verbal communication"
+    ]
+  },
+  {
+    "start": 345.64000000000004,
+    "end": 350.64000000000004,
+    "keywords": [
+      "filtered content",
+      "subscription value",
+      "engagement"
+    ]
+  },
+  {
+    "start": 350.64000000000004,
+    "end": 352.72,
+    "keywords": [
+      "tactics",
       "strategy",
       "planning"
     ]
   },
   {
-    "start": 437.76,
-    "end": 443.32,
+    "start": 352.72,
+    "end": 357.00000000000006,
     "keywords": [
-      "decision-making",
-      "investment",
-      "expertise"
+      "construction",
+      "system building",
+      "time management"
     ]
   },
   {
-    "start": 443.32,
-    "end": 449.2,
+    "start": 357.00000000000006,
+    "end": 358.88000000000005,
     "keywords": [
-      "valuation",
-      "competence",
-      "proof"
+      "day one",
+      "progress tracking",
+      "milestones"
     ]
   },
   {
-    "start": 449.2,
-    "end": 455.71999999999997,
+    "start": 358.88000000000005,
+    "end": 361.76000000000005,
     "keywords": [
-      "delivery",
-      "content",
-      "engagement"
-    ]
-  },
-  {
-    "start": 455.71999999999997,
-    "end": 461.52,
-    "keywords": [
-      "innovation",
-      "solution",
-      "marketplace"
-    ]
-  },
-  {
-    "start": 461.52,
-    "end": 467.35999999999996,
-    "keywords": [
-      "content creation",
-      "organization",
-      "branding"
-    ]
-  },
-  {
-    "start": 467.35999999999996,
-    "end": 474.35999999999996,
-    "keywords": [
-      "networking event",
-      "professional gathering",
-      "conference"
-    ]
-  },
-  {
-    "start": 474.35999999999996,
-    "end": 480.24,
-    "keywords": [
-      "personal insight",
-      "self-awareness",
-      "reflection"
-    ]
-  },
-  {
-    "start": 480.24,
-    "end": 486.0,
-    "keywords": [
-      "preparation process",
-      "qualification steps",
-      "education"
-    ]
-  },
-  {
-    "start": 486.0,
-    "end": 492.08,
-    "keywords": [
-      "reservation system",
-      "download option",
-      "comfort request"
-    ]
-  },
-  {
-    "start": 492.08,
-    "end": 497.36,
-    "keywords": [
-      "reflexes",
-      "maturity",
-      "level"
-    ]
-  },
-  {
-    "start": 497.36,
-    "end": 502.68,
-    "keywords": [
-      "engagement",
-      "conversion",
+      "transactional",
+      "business",
       "strategy"
     ]
   },
   {
-    "start": 502.68,
-    "end": 507.68,
+    "start": 361.76000000000005,
+    "end": 365.08000000000004,
+    "keywords": [
+      "narrow focus",
+      "specific issue",
+      "problem-solving"
+    ]
+  },
+  {
+    "start": 365.08,
+    "end": 370.91999999999996,
+    "keywords": [
+      "individual case",
+      "costly solution",
+      "expert advice"
+    ]
+  },
+  {
+    "start": 370.91999999999996,
+    "end": 378.15999999999997,
+    "keywords": [
+      "consultant",
+      "high value",
+      "sales pitch"
+    ]
+  },
+  {
+    "start": 378.15999999999997,
+    "end": 382.52,
+    "keywords": [
+      "professional setting",
+      "client interaction",
+      "negotiation"
+    ]
+  },
+  {
+    "start": 382.52,
+    "end": 386.4,
+    "keywords": [
+      "experienced skater",
+      "skateboarding",
+      "client base"
+    ]
+  },
+  {
+    "start": 386.4,
+    "end": 389.28,
+    "keywords": [
+      "professional consultant",
+      "video search",
+      "Youtube"
+    ]
+  },
+  {
+    "start": 389.28,
+    "end": 393.91999999999996,
+    "keywords": [
+      "interception",
+      "action capture",
+      "conversation"
+    ]
+  },
+  {
+    "start": 393.92,
+    "end": 396.32,
+    "keywords": [
+      "day countdown",
+      "schedule planning",
+      "time management"
+    ]
+  },
+  {
+    "start": 396.32,
+    "end": 398.52000000000004,
+    "keywords": [
+      "skateboarding environment",
+      "urban setting",
+      "street skating"
+    ]
+  },
+  {
+    "start": 398.52000000000004,
+    "end": 401.56,
+    "keywords": [
+      "decision-making",
+      "video",
+      "recording"
+    ]
+  },
+  {
+    "start": 401.56,
+    "end": 405.84000000000003,
+    "keywords": [
+      "understanding",
+      "problem",
+      "solution"
+    ]
+  },
+  {
+    "start": 405.84000000000003,
+    "end": 409.48,
+    "keywords": [
+      "judge",
+      "case",
+      "evidence"
+    ]
+  },
+  {
+    "start": 409.48,
+    "end": 413.84000000000003,
+    "keywords": [
+      "empathy",
+      "conflict",
+      "resolution"
+    ]
+  },
+  {
+    "start": 413.84000000000003,
+    "end": 417.16,
+    "keywords": [
+      "strategy",
+      "challenge",
+      "outcome"
+    ]
+  },
+  {
+    "start": 417.16,
+    "end": 419.32,
+    "keywords": [
+      "deconstruction",
+      "solutions",
+      "explanation"
+    ]
+  },
+  {
+    "start": 419.32,
+    "end": 422.84000000000003,
+    "keywords": [
+      "current_system",
+      "inefficiency",
+      "innovation"
+    ]
+  },
+  {
+    "start": 423.16,
+    "end": 425.92,
+    "keywords": [
+      "mechanism",
+      "introduction",
+      "unique"
+    ]
+  },
+  {
+    "start": 425.92,
+    "end": 427.52000000000004,
+    "keywords": [
+      "restraint",
+      "sufficient",
+      "communication"
+    ]
+  },
+  {
+    "start": 427.52000000000004,
+    "end": 429.72,
+    "keywords": [
+      "providing",
+      "enough_information",
+      "decision"
+    ]
+  },
+  {
+    "start": 429.72,
+    "end": 434.84000000000003,
+    "keywords": [
+      "exercise",
+      "system",
+      "setup"
+    ]
+  },
+  {
+    "start": 434.84000000000003,
+    "end": 438.00000000000006,
+    "keywords": [
+      "call-to-action",
+      "promotion",
+      "subscribe"
+    ]
+  },
+  {
+    "start": 438.00000000000006,
+    "end": 440.48,
+    "keywords": [
+      "premium",
+      "offer",
+      "click"
+    ]
+  },
+  {
+    "start": 440.48,
+    "end": 446.08000000000004,
+    "keywords": [
+      "directness",
+      "communication",
+      "message"
+    ]
+  },
+  {
+    "start": 446.08000000000004,
+    "end": 448.68,
+    "keywords": [
+      "b-roll",
+      "footage",
+      "t446"
+    ]
+  },
+  {
+    "start": 448.68,
+    "end": 450.04,
+    "keywords": [
+      "new journey",
+      "optimize search",
+      "SEO title"
+    ]
+  },
+  {
+    "start": 450.04,
+    "end": 451.88,
+    "keywords": [
+      "conference room",
+      "presentation",
+      "networking"
+    ]
+  },
+  {
+    "start": 451.88,
+    "end": 454.08,
+    "keywords": [
+      "rich descriptions",
+      "tags relevant",
+      "content quality"
+    ]
+  },
+  {
+    "start": 454.08,
+    "end": 457.16,
+    "keywords": [
+      "user engagement",
+      "interest-driven content",
+      "creative ideas"
+    ]
+  },
+  {
+    "start": 457.16,
+    "end": 459.28000000000003,
+    "keywords": [
+      "nature walk",
+      "outdoor activity",
+      "relaxation mood"
+    ]
+  },
+  {
+    "start": 459.28000000000003,
+    "end": 461.04,
+    "keywords": [
+      "search engine",
+      "optimization",
+      "algorithm"
+    ]
+  },
+  {
+    "start": 461.04,
+    "end": 464.8,
+    "keywords": [
+      "target audience",
+      "niche marketing",
+      "specificity"
+    ]
+  },
+  {
+    "start": 464.8,
+    "end": 467.56,
+    "keywords": [
+      "quality content",
+      "engagement",
+      "creativity"
+    ]
+  },
+  {
+    "start": 467.56,
+    "end": 470.76,
+    "keywords": [
+      "visual appeal",
+      "aesthetics",
+      "design"
+    ]
+  },
+  {
+    "start": 470.76,
+    "end": 473.48,
+    "keywords": [
+      "user experience",
+      "interactivity",
+      "navigation"
+    ]
+  },
+  {
+    "start": 473.48,
+    "end": 474.96000000000004,
+    "keywords": [
+      "journey",
+      "adventure",
+      "travel"
+    ]
+  },
+  {
+    "start": 474.96000000000004,
+    "end": 477.36,
+    "keywords": [
+      "intentions",
+      "signals",
+      "communication"
+    ]
+  },
+  {
+    "start": 477.36,
+    "end": 480.32,
+    "keywords": [
+      "private message",
+      "click link",
+      "invitation"
+    ]
+  },
+  {
+    "start": 480.32,
+    "end": 482.32,
+    "keywords": [
+      "interaction",
+      "reaction",
+      "proposal"
+    ]
+  },
+  {
+    "start": 482.32,
+    "end": 486.72,
+    "keywords": [
+      "conversation",
+      "exchange",
+      "dialogue"
+    ]
+  },
+  {
+    "start": 486.72,
+    "end": 490.56,
+    "keywords": [
+      "day",
+      "timeframe",
+      "performance"
+    ]
+  },
+  {
+    "start": 490.56,
+    "end": 492.72,
+    "keywords": [
+      "testing",
+      "evaluation",
+      "feedback"
+    ]
+  },
+  {
+    "start": 492.72,
+    "end": 498.68,
+    "keywords": [
+      "message",
+      "clarity",
+      "action"
+    ]
+  },
+  {
+    "start": 498.68,
+    "end": 501.16,
+    "keywords": [
+      "adjustment",
+      "real-time",
+      "strategy"
+    ]
+  },
+  {
+    "start": 501.16,
+    "end": 503.56,
+    "keywords": [
+      "stopwatch",
+      "runner",
+      "pacing"
+    ]
+  },
+  {
+    "start": 503.56,
+    "end": 506.56,
+    "keywords": [
+      "bedding",
+      "sleeping",
+      "mattress"
+    ]
+  },
+  {
+    "start": 506.56,
+    "end": 507.56,
+    "keywords": [
+      "meditation",
+      "zen garden",
+      "peacefulness"
+    ]
+  },
+  {
+    "start": 507.56,
+    "end": 511.24,
+    "keywords": [
+      "cooking",
+      "kitchenware",
+      "recipes"
+    ]
+  },
+  {
+    "start": 511.24,
+    "end": 514.16,
+    "keywords": [
+      "gardening",
+      "plants",
+      "nature"
+    ]
+  },
+  {
+    "start": 514.16,
+    "end": 517.12,
+    "keywords": [
+      "running",
+      "trail",
+      "adventure"
+    ]
+  },
+  {
+    "start": 517.12,
+    "end": 520.76,
+    "keywords": [
+      "elephant",
+      "algorithm",
+      "room"
+    ]
+  },
+  {
+    "start": 520.76,
+    "end": 523.04,
+    "keywords": [
+      "panic",
+      "video",
+      "upload"
+    ]
+  },
+  {
+    "start": 523.04,
+    "end": 524.96,
+    "keywords": [
+      "shadowban",
+      "sale",
+      "concern"
+    ]
+  },
+  {
+    "start": 524.96,
+    "end": 526.68,
     "keywords": [
       "YouTube",
-      "qualified prospects",
-      "attraction"
+      "monitoring",
+      "visibility"
     ]
   },
   {
-    "start": 507.68,
-    "end": 514.52,
+    "start": 526.68,
+    "end": 529.4,
     "keywords": [
-      "Instagram",
-      "curiosity",
-      "purchase"
-    ]
-  },
-  {
-    "start": 514.52,
-    "end": 520.48,
-    "keywords": [
-      "startup",
-      "growth",
-      "challenge"
-    ]
-  },
-  {
-    "start": 520.48,
-    "end": 525.84,
-    "keywords": [
-      "months before results",
-      "excuses",
-      "engagement"
-    ]
-  },
-  {
-    "start": 525.84,
-    "end": 530.0799999999999,
-    "keywords": [
-      "illusion of visibility",
-      "preference",
-      "instantaneity"
-    ]
-  },
-  {
-    "start": 530.0799999999999,
-    "end": 535.52,
-    "keywords": [
-      "business construction",
-      "truth",
-      "YouTube start-up"
-    ]
-  },
-  {
-    "start": 535.52,
-    "end": 541.92,
-    "keywords": [
-      "speed up",
-      "correct actions",
-      "targeted searches"
-    ]
-  },
-  {
-    "start": 542.64,
-    "end": 547.8,
-    "keywords": [
-      "video structure",
-      "concrete problems",
-      "optimization"
-    ]
-  },
-  {
-    "start": 547.8,
-    "end": 554.12,
-    "keywords": [
-      "miniatures",
       "algorithm",
-      "human recognition"
+      "elephant",
+      "room"
     ]
   },
   {
-    "start": 554.12,
-    "end": 562.04,
+    "start": 529.4,
+    "end": 530.2,
     "keywords": [
-      "viewing experience",
-      "video count",
-      "audience growth"
+      "algorithm",
+      "recommendation",
+      "creators"
     ]
   },
   {
-    "start": 562.04,
-    "end": 567.0,
+    "start": 530.2,
+    "end": 534.12,
     "keywords": [
-      "understanding self",
-      "previous videos",
-      "creating mesh"
+      "business model",
+      "direct sales",
+      "strategy"
     ]
   },
   {
-    "start": 567.0,
-    "end": 573.44,
+    "start": 534.12,
+    "end": 535.48,
     "keywords": [
-      "exponential audience increase",
-      "video production pace",
-      "social media presence"
+      "frustration",
+      "disregard",
+      "attitude"
     ]
   },
   {
-    "start": 573.44,
-    "end": 578.28,
+    "start": 535.48,
+    "end": 538.08,
     "keywords": [
-      "personal branding",
-      "content creation",
-      "audience engagement"
-    ]
-  },
-  {
-    "start": 578.28,
-    "end": 584.0,
-    "keywords": [
-      "sleep system",
-      "automatic leads generation",
-      "nighttime"
-    ]
-  },
-  {
-    "start": 584.0,
-    "end": 589.84,
-    "keywords": [
-      "running treadmill",
-      "Instagram presence",
-      "active lifestyle"
-    ]
-  },
-  {
-    "start": 589.84,
-    "end": 594.84,
-    "keywords": [
-      "acquisition technique",
-      "careful avoidance",
-      "secret method"
-    ]
-  },
-  {
-    "start": 595.5600000000001,
-    "end": 600.96,
-    "keywords": [
-      "advertising on Meta",
-      "LinkedIn promotion",
-      "Google Ads cost"
-    ]
-  },
-  {
-    "start": 600.96,
-    "end": 607.6,
-    "keywords": [
-      "lead conversion rate",
-      "payment for leads",
-      "return on investment"
-    ]
-  },
-  {
-    "start": 607.6,
-    "end": 615.4,
-    "keywords": [
-      "conversion rate",
-      "percentage calculation",
-      "client acquisition cost"
-    ]
-  },
-  {
-    "start": 615.4,
-    "end": 622.9200000000001,
-    "keywords": [
-      "advertising budget",
-      "marketing investment",
-      "video promotion"
-    ]
-  },
-  {
-    "start": 622.92,
-    "end": 629.04,
-    "keywords": [
-      "content creation",
-      "expertise payment",
-      "time value"
-    ]
-  },
-  {
-    "start": 629.04,
-    "end": 635.4399999999999,
-    "keywords": [
-      "investment return",
-      "revenue generation",
-      "frequency of content"
-    ]
-  },
-  {
-    "start": 635.4399999999999,
-    "end": 641.28,
-    "keywords": [
-      "effort comparison",
-      "creative process",
-      "video production quality"
-    ]
-  },
-  {
-    "start": 641.28,
-    "end": 647.04,
-    "keywords": [
-      "effort",
-      "capitalize",
-      "flow"
-    ]
-  },
-  {
-    "start": 647.04,
-    "end": 652.4399999999999,
-    "keywords": [
-      "time",
-      "video",
-      "clients"
-    ]
-  },
-  {
-    "start": 652.44,
-    "end": 657.96,
-    "keywords": [
-      "ROI",
-      "answer",
-      "evident"
-    ]
-  },
-  {
-    "start": 657.96,
-    "end": 665.24,
-    "keywords": [
-      "Youtube",
-      "saturation",
-      "falsely"
-    ]
-  },
-  {
-    "start": 665.24,
-    "end": 671.8800000000001,
-    "keywords": [
-      "content",
-      "engagement",
-      "visualize"
-    ]
-  },
-  {
-    "start": 671.8800000000001,
-    "end": 677.8000000000001,
-    "keywords": [
-      "newspaper",
-      "article",
-      "newsroom"
-    ]
-  },
-  {
-    "start": 677.8000000000001,
-    "end": 682.7600000000001,
-    "keywords": [
-      "conference",
-      "seminar",
-      "presentation"
-    ]
-  },
-  {
-    "start": 682.7600000000001,
-    "end": 688.6800000000001,
-    "keywords": [
-      "innovation",
       "technology",
+      "innovation",
       "startup"
     ]
   },
   {
-    "start": 688.6800000000001,
-    "end": 694.6,
+    "start": 538.08,
+    "end": 539.4,
     "keywords": [
-      "nature",
-      "forest",
-      "wildlife"
+      "celebration",
+      "success",
+      "achievement"
     ]
   },
   {
-    "start": 694.6,
-    "end": 700.8000000000001,
+    "start": 539.4,
+    "end": 542.36,
     "keywords": [
-      "cityscape",
-      "architecture",
-      "street"
+      "recommendation",
+      "YouTube",
+      "influence"
     ]
   },
   {
-    "start": 700.8000000000001,
-    "end": 707.2,
+    "start": 542.36,
+    "end": 544.36,
     "keywords": [
-      "unique angle",
-      "personality",
+      "mass appeal",
+      "entertainment",
+      "emotion"
+    ]
+  },
+  {
+    "start": 544.36,
+    "end": 546.04,
+    "keywords": [
+      "size",
+      "immense",
+      "scale"
+    ]
+  },
+  {
+    "start": 546.04,
+    "end": 548.64,
+    "keywords": [
+      "popularity",
+      "audience",
+      "engagement"
+    ]
+  },
+  {
+    "start": 548.64,
+    "end": 551.52,
+    "keywords": [
+      "creativity",
+      "artistry",
+      "performance"
+    ]
+  },
+  {
+    "start": 551.52,
+    "end": 553.2,
+    "keywords": [
+      "optimize",
+      "watch time",
+      "engagement"
+    ]
+  },
+  {
+    "start": 553.2,
+    "end": 557.04,
+    "keywords": [
+      "reference",
+      "visibility",
+      "discoverability"
+    ]
+  },
+  {
+    "start": 557.04,
+    "end": 561.4,
+    "keywords": [
+      "clarity",
+      "richness",
+      "relevance"
+    ]
+  },
+  {
+    "start": 561.4,
+    "end": 564.76,
+    "keywords": [
+      "title",
+      "description",
+      "specific content"
+    ]
+  },
+  {
+    "start": 564.8,
+    "end": 567.84,
+    "keywords": [
+      "interesting",
+      "educational",
+      "vibrant"
+    ]
+  },
+  {
+    "start": 567.84,
+    "end": 569.04,
+    "keywords": [
+      "sale",
+      "shopping",
+      "marketplace"
+    ]
+  },
+  {
+    "start": 569.04,
+    "end": 570.6,
+    "keywords": [
+      "relaxation",
+      "peaceful",
+      "nature"
+    ]
+  },
+  {
+    "start": 570.6,
+    "end": 574.12,
+    "keywords": [
+      "business",
+      "commerce",
+      "negotiation"
+    ]
+  },
+  {
+    "start": 574.12,
+    "end": 576.52,
+    "keywords": [
+      "success",
+      "achievement",
+      "celebration"
+    ]
+  },
+  {
+    "start": 576.52,
+    "end": 578.08,
+    "keywords": [
+      "technology",
+      "innovation",
+      "gadgets"
+    ]
+  },
+  {
+    "start": 578.08,
+    "end": 580.08,
+    "keywords": [
+      "masses",
+      "refusal",
+      "individuality"
+    ]
+  },
+  {
+    "start": 580.08,
+    "end": 581.92,
+    "keywords": [
+      "audience",
+      "micro-level",
+      "engagement"
+    ]
+  },
+  {
+    "start": 581.92,
+    "end": 583.16,
+    "keywords": [
+      "payment",
+      "responsibility",
+      "consumer"
+    ]
+  },
+  {
+    "start": 583.16,
+    "end": 584.4,
+    "keywords": [
+      "finality",
+      "conclusion",
+      "end"
+    ]
+  },
+  {
+    "start": 584.4,
+    "end": 587.12,
+    "keywords": [
+      "timeframe",
+      "misunderstanding",
+      "perception"
+    ]
+  },
+  {
+    "start": 587.12,
+    "end": 590.0,
+    "keywords": [
+      "contracts",
+      "agents",
+      "duration"
+    ]
+  },
+  {
+    "start": 590.0,
+    "end": 591.92,
+    "keywords": [
+      "subscription",
+      "retention",
+      "customer"
+    ]
+  },
+  {
+    "start": 591.92,
+    "end": 592.92,
+    "keywords": [
+      "speak",
+      "communicate",
+      "interaction"
+    ]
+  },
+  {
+    "start": 592.92,
+    "end": 595.04,
+    "keywords": [
+      "publishing",
+      "frequency",
       "content creation"
     ]
   },
   {
-    "start": 707.2,
-    "end": 712.72,
+    "start": 595.04,
+    "end": 598.0799999999999,
     "keywords": [
-      "ease of use",
-      "speed",
-      "viral potential"
+      "community management",
+      "testing",
+      "diversity"
     ]
   },
   {
-    "start": 712.72,
-    "end": 719.44,
+    "start": 598.0799999999999,
+    "end": 600.4799999999999,
     "keywords": [
-      "asset sales",
-      "year-round engagement",
-      "time capitalization"
+      "waiting",
+      "algorithm",
+      "recognition"
     ]
   },
   {
-    "start": 719.44,
-    "end": 726.1600000000001,
+    "start": 600.4799999999999,
+    "end": 602.16,
     "keywords": [
-      "survival skills",
-      "dominance strategies",
-      "entrepreneurship"
+      "boule",
+      "desire",
+      "payment"
     ]
   },
   {
-    "start": 726.1600000000001,
-    "end": 732.0,
+    "start": 602.16,
+    "end": 605.24,
     "keywords": [
-      "conclusion",
-      "differentiation",
-      "selling point"
+      "result",
+      "spending",
+      "zero client"
     ]
   },
   {
-    "start": 732.0,
-    "end": 737.12,
+    "start": 605.24,
+    "end": 607.88,
     "keywords": [
-      "Haitian",
-      "culture",
-      "independence"
+      "outcome",
+      "money",
+      "absence"
     ]
   },
   {
-    "start": 737.12,
-    "end": 741.6,
+    "start": 607.88,
+    "end": 609.5999999999999,
     "keywords": [
-      "Investment",
-      "time-management",
-      "profitability"
+      "b-roll",
+      "footage",
+      "t608"
     ]
   },
   {
-    "start": 741.6,
-    "end": 747.6,
+    "start": 609.5999999999999,
+    "end": 612.36,
     "keywords": [
-      "Youtube",
-      "commitment",
-      "content"
+      "views",
+      "engagement",
+      "presence"
     ]
   },
   {
-    "start": 747.6,
-    "end": 752.24,
+    "start": 612.36,
+    "end": 615.56,
     "keywords": [
-      "Expertise",
+      "conversion",
+      "testing",
+      "system"
+    ]
+  },
+  {
+    "start": 615.56,
+    "end": 617.68,
+    "keywords": [
       "branding",
-      "commercialization"
+      "interaction",
+      "lifestyle"
     ]
   },
   {
-    "start": 752.24,
-    "end": 758.28,
+    "start": 617.68,
+    "end": 619.88,
     "keywords": [
-      "Creativity",
       "innovation",
-      "entrepreneurship"
+      "experiment",
+      "challenge"
     ]
   },
   {
-    "start": 758.28,
-    "end": 764.28,
+    "start": 619.88,
+    "end": 623.56,
+    "keywords": [
+      "analytics",
+      "performance",
+      "strategy"
+    ]
+  },
+  {
+    "start": 623.56,
+    "end": 626.96,
+    "keywords": [
+      "video",
+      "message",
+      "CTA"
+    ]
+  },
+  {
+    "start": 626.96,
+    "end": 628.4,
+    "keywords": [
+      "repeat",
+      "adjustment",
+      "feedback"
+    ]
+  },
+  {
+    "start": 628.4,
+    "end": 630.36,
+    "keywords": [
+      "timeframe",
+      "progress",
+      "expectation"
+    ]
+  },
+  {
+    "start": 630.36,
+    "end": 633.56,
+    "keywords": [
+      "entrepreneurship",
+      "business",
+      "strategy"
+    ]
+  },
+  {
+    "start": 633.56,
+    "end": 636.08,
+    "keywords": [
+      "innovation",
+      "challenge",
+      "solution"
+    ]
+  },
+  {
+    "start": 636.08,
+    "end": 637.72,
+    "keywords": [
+      "content creator",
+      "digital media",
+      "production"
+    ]
+  },
+  {
+    "start": 637.72,
+    "end": 641.64,
+    "keywords": [
+      "entrepreneurship",
+      "business",
+      "decision-making"
+    ]
+  },
+  {
+    "start": 641.64,
+    "end": 645.8,
+    "keywords": [
+      "aspiration",
+      "publishing",
+      "networking"
+    ]
+  },
+  {
+    "start": 645.8,
+    "end": 647.12,
+    "keywords": [
+      "questioning self",
+      "personal growth",
+      "reflection"
+    ]
+  },
+  {
+    "start": 647.12,
+    "end": 649.72,
     "keywords": [
       "visibility",
-      "clients",
-      "choice"
+      "compensation",
+      "career advancement"
+    ]
+  },
+  {
+    "start": 649.76,
+    "end": 652.12,
+    "keywords": [
+      "relationship",
+      "choice",
+      "freedom"
+    ]
+  },
+  {
+    "start": 652.12,
+    "end": 655.6,
+    "keywords": [
+      "payment",
+      "deadline",
+      "negotiation"
     ]
   }
 ]
