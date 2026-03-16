@@ -21,6 +21,7 @@ def _sanitize(s: str) -> str:
 def build_download_filename(
     scene: Scene | None,
     clip_url: str | None,
+    timeline_index: int | None = None,
 ) -> str:
     if scene is not None:
         start_m = int(scene.start_time) // 60
@@ -29,7 +30,10 @@ def build_download_filename(
         end_s = int(scene.end_time) % 60
         time_part = f"{start_m:02d}-{start_s:02d}-{end_m:02d}-{end_s:02d}"
         kw_part = "_".join(scene.keywords) if scene.keywords else "clip"
-        name = f"{time_part}-{_sanitize(kw_part)}.mp4"
+        if timeline_index is not None:
+            name = f"{time_part}-{timeline_index}-{_sanitize(kw_part)}.mp4"
+        else:
+            name = f"{time_part}-{_sanitize(kw_part)}.mp4"
     elif clip_url is not None:
         match = re.search(r"/clip/\d+/([^/?]+)", clip_url)
         slug = match.group(1) if match else "clip"

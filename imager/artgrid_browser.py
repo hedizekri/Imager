@@ -29,22 +29,22 @@ def connect_chromium(cdp_url: str | None = None) -> tuple:
     return playwright, browser, page
 
 
-def open_first_result_via_chromium(page, search_url: str) -> None:
-    print("[browser] Opening search URL")
+def open_nth_result_via_chromium(page, search_url: str, n: int) -> None:
     page.goto(search_url, timeout=BROWSER_NAVIGATION_TIMEOUT_MS)
     try:
-        print(f"[browser] Waiting for first result (selector: {ARTGRID_FIRST_RESULT_SELECTOR})")
-        first = page.locator(ARTGRID_FIRST_RESULT_SELECTOR).first
-        first.wait_for(state="attached", timeout=BROWSER_SELECTOR_TIMEOUT_MS)
-        href = first.get_attribute("href")
+        loc = page.locator(ARTGRID_FIRST_RESULT_SELECTOR).nth(n)
+        loc.wait_for(state="attached", timeout=BROWSER_SELECTOR_TIMEOUT_MS)
+        href = loc.get_attribute("href")
         if href and not href.startswith("http"):
             base = ARTGRID_SEARCH_BASE.rstrip("/")
             href = base + ("/" + href.lstrip("/"))
         if href:
-            print(f"[browser] Found first result, navigating to: {href[:80]}{'...' if len(href) > 80 else ''}")
             page.goto(href, timeout=BROWSER_NAVIGATION_TIMEOUT_MS)
-        else:
-            print("[browser] First result had no href, skipping")
     except Exception as e:
-        print(f"[browser] Could not find first result: {e}")
+        print(f"[browser] Could not find result {n + 1}: {e}")
     time.sleep(random.uniform(BROWSER_OPEN_DELAY_MIN, BROWSER_OPEN_DELAY_MAX))
+
+
+def open_first_result_via_chromium(page, search_url: str) -> None:
+    print("[browser] Opening search URL")
+    open_nth_result_via_chromium(page, search_url, 0)

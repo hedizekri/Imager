@@ -10,6 +10,7 @@ from imager.artgrid_browser import (
     connect_chromium,
     open_first_result,
     open_first_result_via_chromium,
+    open_nth_result_via_chromium,
 )
 from imager.artgrid_download import (
     build_download_filename,
@@ -45,13 +46,14 @@ def run_pipeline(
     open_in_browser: bool = False,
     connect_flag: bool = False,
     download_flag: bool = False,
+    timelines: int = 1,
     debug: bool = False,
 ) -> None:
     if not audio_path.exists():
         raise ValueError(f"Audio file not found: {audio_path}")
 
     base = _project_name(audio_path)
-    project_name = f"{base}_{datetime.now().strftime('%y%m%d%H%M%S')}"
+    project_name = f"{base}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     project_downloads = PATHS["downloads_dir"] / project_name
     project_output = (output_path or PATHS["output_dir"]) / project_name
 
@@ -121,20 +123,21 @@ def run_pipeline(
                     project_downloads.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(audio_path, project_downloads / audio_path.name)
                 for scene, url in zip(scenes, segment_urls):
-                    tab = context.new_page()
-                    try:
-                        open_first_result_via_chromium(tab, url)
-                        if download_flag:
-                            video_url = get_video_url_from_page(tab)
-                            if video_url:
-                                dest = project_downloads / build_download_filename(
-                                    scene, None
-                                )
-                                download_video(tab, video_url, dest)
-                            else:
-                                print("[download] Skipped (no video URL)")
-                    finally:
-                        tab.close()
+                    for ti in range(1, timelines + 1):
+                        tab = context.new_page()
+                        try:
+                            open_nth_result_via_chromium(tab, url, ti - 1)
+                            if download_flag:
+                                video_url = get_video_url_from_page(tab)
+                                if video_url:
+                                    dest = project_downloads / build_download_filename(
+                                        scene, None, timeline_index=ti
+                                    )
+                                    download_video(tab, video_url, dest)
+                                else:
+                                    print("[download] Skipped (no video URL)")
+                        finally:
+                            tab.close()
             finally:
                 browser.close()
                 playwright.stop()
@@ -147,9 +150,15 @@ def run_pipeline(
             scenes,
             downloads_dir=project_downloads,
             output_dir=project_output,
+            timeline_count=timelines,
         )
-        shutil.copy2(audio_path, project_output / audio_path.name)
-        print(f"Organized {len(result)} files and audio into {project_output}")
+        if timelines > 1:
+            for ti in range(1, timelines + 1):
+                shutil.copy2(audio_path, project_output / str(ti) / audio_path.name)
+            print(f"Organized {len(result)} files and audio into {project_output}/1..{timelines}")
+        else:
+            shutil.copy2(audio_path, project_output / audio_path.name)
+            print(f"Organized {len(result)} files and audio into {project_output}")
         if project_downloads.exists():
             shutil.rmtree(project_downloads)
     else:
@@ -234,8 +243,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--open", action="store_true", dest="open_in_browser", help="Open each segment in default browser (search URL only)")
     parser.add_argument("--connect", action="store_true", dest="connect_flag", help="Connect to Chromium/Chrome with remote debugging; open first result per segment")
     parser.add_argument("--download", action="store_true", dest="download_flag", help="Download first result video per segment (requires --connect)")
+    parser.add_argument("--timelines", type=int, default=1, metavar="N", help="Number of timelines (1-3): download top N results per segment")
     parser.add_argument("-d", "--debug", action="store_true", help="Print concise debug summaries")
-    return parser.parse_args()
+    args = parser.parse_args()
+    if not (1 <= args.timelines <= 3):
+        raise ValueError("--timelines must be 1, 2, or 3")
+    return args
 
 
 def main() -> None:
@@ -256,6 +269,7 @@ def main() -> None:
         args.open_in_browser,
         args.connect_flag,
         args.download_flag,
+        args.timelines,
         args.debug,
     )
 

@@ -7,6 +7,7 @@ from imager.types import Scene, Transcript
 
 
 MAX_RETRIES = 2
+CHUNK_SIZE = 10
 
 SCENE_PROMPT = """Goal: from each transcript segment, derive search terms that will find B-roll footage matching what is being said in that segment. Your keywords are used for separate stock-video searches; give each segment a distinct visual focus so each search returns different clips, and do not repeat the same topic or theme words in every segment.
 
@@ -30,24 +31,30 @@ def extract_scenes(transcript: Transcript, debug: bool = False) -> list[Scene]:
     if not transcript.full_text.strip():
         raise ValueError("Transcript is empty")
 
-    segments_text = _format_segments_with_timestamps(transcript.segments)
-    prompt = SCENE_PROMPT.format(segments=segments_text, count=len(transcript.segments))
-    if debug:
-        print("[debug] scene prompt content:")
-        print(prompt)
-
-    for attempt in range(MAX_RETRIES):
-        response = _call_ollama(prompt)
-        try:
-            return _parse_scenes(response, transcript)
-        except ValueError as e:
-            if attempt == MAX_RETRIES - 1:
-                raise e
-            print(f"  Retry {attempt + 1}/{MAX_RETRIES}: LLM output invalid: {e}")
-            if debug:
-                print(f"[debug] raw LLM response (first 1000 chars):\n{response[:1000]}")
-
-    raise ValueError("Failed to extract scenes after retries")
+    segments = transcript.segments
+    scenes: list[Scene] = []
+    for start in range(0, len(segments), CHUNK_SIZE):
+        chunk = segments[start : start + CHUNK_SIZE]
+        chunk_transcript = Transcript(full_text="", segments=chunk)
+        segments_text = _format_segments_with_timestamps(chunk)
+        prompt = SCENE_PROMPT.format(segments=segments_text, count=len(chunk))
+        if debug:
+            end = start + len(chunk)
+            print(f"[debug] chunk {start // CHUNK_SIZE + 1}, segments {start}-{end}")
+        for attempt in range(MAX_RETRIES):
+            response = _call_ollama(prompt)
+            try:
+                chunk_scenes = _parse_scenes(response, chunk_transcript)
+                scenes.extend(chunk_scenes)
+                break
+            except ValueError as e:
+                if attempt == MAX_RETRIES - 1:
+                    raise e
+                print(f"  Retry {attempt + 1}/{MAX_RETRIES}: LLM output invalid: {e}")
+                if debug:
+                    print(f"[debug] raw LLM response (first 1000 chars):\n{response[:1000]}")
+    _raise_if_duplicate_keyword_sets(scenes)
+    return scenes
 
 
 def _format_segments_with_timestamps(segments: list) -> str:
@@ -95,7 +102,6 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
                 end_time=seg.end_time,
             )
         )
-    _raise_if_duplicate_keyword_sets(scenes)
     return scenes
 
 
