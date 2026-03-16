@@ -51,7 +51,6 @@ def extract_scenes(transcript: Transcript, debug: bool = False) -> list[Scene]:
                 print(f"  Retry {attempt + 1}/{MAX_RETRIES}: LLM output invalid: {e}")
                 if debug:
                     print(f"[debug] raw LLM response (first 1000 chars):\n{response[:1000]}")
-    _raise_if_duplicate_keyword_sets(scenes)
     return scenes
 
 
@@ -105,21 +104,6 @@ def _parse_scenes(response: str, transcript: Transcript) -> list[Scene]:
             )
         )
     return scenes
-
-
-def _raise_if_duplicate_keyword_sets(scenes: list[Scene]) -> None:
-    seen: dict[tuple[str, ...], list[int]] = {}
-    for i, scene in enumerate(scenes):
-        if not scene.keywords:
-            continue
-        sig = tuple(sorted(k.lower() for k in scene.keywords))
-        if sig not in seen:
-            seen[sig] = []
-        seen[sig].append(i)
-    duplicates = {sig: indices for sig, indices in seen.items() if len(indices) > 1}
-    if duplicates:
-        parts = [f"segments {indices}: {list(sig)}" for sig, indices in duplicates.items()]
-        raise ValueError(f"Duplicate keyword sets: {'; '.join(parts)}")
 
 
 def _strip_markdown_fences(text: str) -> str:
